@@ -1,6 +1,6 @@
 #!/usr/bin/env nim
 
-import std/[os, strformat]
+import std / [os, strformat]
 
 mode = ScriptMode.Verbose
 
