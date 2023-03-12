@@ -3,7 +3,7 @@
 version       = "0.1.0"
 author        = "nirvai"
 description   = "app installer & script runner"
-license       = "MIT"
+license       = "TO KILL!"
 srcDir        = "src"
 bin           = @["boat"]
 
