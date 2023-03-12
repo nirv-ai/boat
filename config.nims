@@ -6,9 +6,9 @@
 --hints:on
 --mm:orc
 --multimethods:on
---parallelBuild:0 # 1 is always a good idea in CI
+--parallelBuild:0 # TODO: 1 is always a good idea in CI
 --stackTraceMsgs:on
---styleCheck:hint
+--styleCheck:error
 --threads:on
 --tlsEmulation:on
 --warnings:on

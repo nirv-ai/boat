@@ -1,4 +1,4 @@
-proc boat: auto = "welcome to boat"
+proc boat*: void = echo "All HANDS! cat o'nine tails; blue peter and landlubber"
 
 when isMainModule:
-  echo boat()
+  boat()
