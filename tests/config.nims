@@ -1,0 +1,5 @@
+--colors:off
+--define:nimLegacyTypeMismatch
+--excessiveStackTrace:off
+--path:"$projectDir/../../src"
+--processing:off
