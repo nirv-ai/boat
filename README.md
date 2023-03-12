@@ -2,4 +2,4 @@
 
 > Bunch of Arbitrary Tasks.
 
-- package installer & script runner
+- application installer & script runner
