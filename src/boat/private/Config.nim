@@ -1,10 +1,9 @@
 ##
 ## Config
 ## ======
-## base configuration for Manifest and CaptainsLog
+## provides a parser and standard interface
 
 ##[
 ## TLDR
-- a manifest eventually becomes the captains log
-  - from another perspective, the captains log is the realization of a manifest
+- come back later
 ]##
