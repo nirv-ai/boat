@@ -1,6 +1,7 @@
 discard """
 action: "run"
 valgrind: true
+exitcode: 0
 """
 
 import ../bdd
@@ -12,7 +13,7 @@ block baseCaseLoadFile:
 
 block baseCaseLoadFileFromDir:
   let it = bdd("base case: Load Manifest from Directory -> ")
-  it should, "load config", newConf().load()
+  it should, "load config", newConfD().load()
 
 block todoCases:
   let it = bdd("todo cases: ")

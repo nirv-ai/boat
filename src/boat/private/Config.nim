@@ -77,7 +77,7 @@ proc reload*(self: Config): bool =
             result = self.parseLocalManifest()
           of pcDir, pcLinkToDir:
             raise newException(CatchableError, "TODO: loading from dir not setup")
-      except:
+      except CatchableError:
         debugEcho repr getCurrentException()
         raise newException(CatchableError, "unable to load conf from disk")
 
