@@ -16,8 +16,12 @@ Interface
 - come back later
 ]##
 
-from std / parsecfg as cfg import nil
-# import std / os
+import std/[
+  os,
+  parsecfg,
+  strutils,
+]
+
 
 type Config* = ref object of RootObj
   # pub #
@@ -28,11 +32,10 @@ type Config* = ref object of RootObj
     ## URL pointing to a *.ini file
 
   # priv #
-  parsed: cfg.Config ## \
+  parsed: parsecfg.Config ## \
     ## the parsed config after loading
   saved: bool ## \
     ## true if self.use has been saved to disk
-
 
 proc save*(self: Config): bool =
   ## serialize Self.parsed to disk @ self.cachedir | getCachDir() / <SELF.ID>.manifest.nim.ini
@@ -53,16 +56,32 @@ proc reload*(self: Config): bool =
         # does it contain a manifest.nim.ini ? break
     # throw: couldnt find / or read a *.ini file
   # manifest seems to be okay! lets do the actual loading
-  self.parsed = cfg.loadConfig self.use
     # parse and upsert to self.parsed
       # if manifest.nim.ini loads other manifests, recurse
   # everything must be okay!
-  result = true
+  case self.use.startsWith "https"
+    of true: raise newException(CatchableError, "TODO: remote manifests not setup")
+    else:
+      try:
+        let file = self.use.getFileInfo
+        case file.kind
+          of pcFile:
+            if fpUserRead notin file.permissions:
+              raise newException(CatchableError, "invalid file permissions")
+            elif not self.use.endsWith ".ini":
+              raise newException(CatchableError, "invalid file type")
+
+            self.parsed = loadConfig self.use
+            result = true
+          else: raise newException(CatchableError, "TODO: loading from dir not setup")
+      except:
+        debugEcho repr getCurrentException()
+        raise newException(CatchableError, "unable to load conf from disk")
 
 
 proc load*(self: Config): bool =
   ## load whatever self.use points to
   result = if self.saved:
-    if self.parsed is cfg.Config: true # TODO: ensure this checks its not an empty Config
+    if self.parsed is Config: true # TODO: ensure this checks its not an empty Config
     else: self.parse()
   else: self.reload()
