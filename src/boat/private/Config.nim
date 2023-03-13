@@ -63,8 +63,7 @@ proc reload*(self: Config): bool =
     of true: raise newException(CatchableError, "TODO: remote manifests not setup")
     else:
       try:
-        # TODO: test this throws if its not a file
-        # we only check if its not https, whatif ftp? http? etc
+        # this throws if its not a file; no need to check for http/ftp/etc
         let path = self.use.getFileInfo
         case path.kind
           of pcFile, pcLinkToFile:

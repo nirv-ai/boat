@@ -19,3 +19,8 @@ block todoCases:
   let it = bdd "todo cases: "
   it should, "parse config", () => newConf().parseLocalManifest()
   it should, "save config", () => newConf().save()
+
+  for conf in @[
+    Config(use: "192.168.1.1"),
+    Config(use: "http://www.not.https")
+  ]: it shouldError, "invalid protocol", () => conf.load()
