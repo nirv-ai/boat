@@ -11,9 +11,6 @@ links
 -----
 - [parsecfg](https://nim-lang.org/docs/parsecfg.html)
 
-Interface
-=========
-- come back later
 ]##
 
 import std/[
@@ -22,9 +19,15 @@ import std/[
   strutils,
 ]
 
+import BoatErrors
+
+const manifestName = "manifest.nim.ini" ## \
+  ## the captains manifest must be named manifest.nim.ini
+  ## TODO: ensure this is reflected in the docs
+
 type Config* = ref object of RootObj
   cachedir*: string ## \
-    ## defaults to getCacheDir()
+    ## defaults to getCacheDir();
   use*: string ## \
     ## path on disk pointing to a manifest / or dir with a manifest
     ## URL pointing to a *.ini file
@@ -34,58 +37,47 @@ type Config* = ref object of RootObj
   saved: bool ## \
     ## true if self.use has been saved to disk
 
-proc parseLocalManifest*(self: Config, path = self.use): bool =
+proc parseLocalManifest*(self: Config, path: string = self.use): bool =
   ## parse self.use to self.parsed
   ## prefer calling self.load or self.reload for validation
   self.parsed = loadConfig path
   result = true
 
+proc localManifestIsValid*(self: Config, path: string = self.use): bool =
+  ## throws if manifest not found, cant be read, or errors during parsing
+  let pathInfo = path.getFileInfo
+  result = case pathInfo.kind
+    of pcFile, pcLinkToFile:
+      if fpUserRead notin pathInfo.permissions: raise filePermissionError
+      elif not path.endsWith manifestName: raise manifestNameError
+      elif not self.parseLocalManifest path: raise configParseError
+      else: true
+    of pcDir, pcLinkToDir: self.localManifestIsValid self.use / manifestName
+
 proc save*(self: Config): bool =
   ## serialize Self.parsed to disk @ self.cachedir | getCachDir() / <SELF.ID>.manifest.nim.ini
   result = true
 
-proc reload*(self: Config): bool =
+proc reload*(self: Config, path = self.use): bool =
   # starts with https?
-    # ends in .ini? break
+    # ends with manifestName?
+      # recurse self.reload path = save remote file to disk
     # throw: urls must point to a manifest.nim.ini
-  # must be a filepath, as we only support https
-    # do we have read access?
-      # does it end in .ini ? break
-      # must be a dir
-        # does it contain a manifest.nim.ini ? break
-    # throw: couldnt find / or read a *.ini file
-  # manifest seems to be okay! lets do the actual loading
-    # parse and upsert to self.parsed
-      # if manifest.nim.ini loads other manifests, recurse
-    # save parsed to disk
-  # everything must be okay!
-  case self.use.startsWith "https"
-    of true: raise newException(CatchableError, "TODO: remote manifests not setup")
+  case path.startsWith "https"
+    of true: raise tddError
     else:
-      try:
-        # this throws if its not a file; no need to check for http/ftp/etc
-        let path = self.use.getFileInfo
-        case path.kind
-          of pcFile, pcLinkToFile:
-            if fpUserRead notin path.permissions:
-              raise newException(CatchableError, "invalid file permissions")
-            elif not self.use.endsWith ".ini":
-              raise newException(CatchableError, "invalid file type")
-            elif not self.parseLocalManifest():
-              raise newException(CatchableError, "cant parse config")
-          of pcDir, pcLinkToDir:
-            raise newException(CatchableError, "TODO: loading from dir not setup")
+      try: doAssert self.localManifestIsValid(path) == true
       except CatchableError:
         debugEcho repr getCurrentException()
-        raise newException(CatchableError, "unable to load conf from disk")
+        raise fileLoadError
   # TODO: pretty sure ADRs require saving to captains.log as well
   # save is a critical action, dont catch it
-  if not self.save(): raise newException(CatchableError, "unable to cache parsed config to disk")
+  if not self.save(): raise fileSaveError
   else: result = true
 
 proc load*(self: Config): bool =
   ## load whatever self.use points to
   result = if self.saved:
     if self.parsed is Config: true # TODO: ensure this checks its a Config instance
-    else: true # self.parse() TODO: need to load from cacheDir
+    else: raise tddError # self.parse() TODO: need to load from cacheDir
   else: self.reload()

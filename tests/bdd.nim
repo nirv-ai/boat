@@ -7,7 +7,7 @@ proc itShould*(
   name = "test name: ",
   cond: bool,
   istrue = true
-  ): void = doAssert cond == istrue, name & msg
+  ): void = doAssert cond == istrue, name & " -> " & msg
 
 proc itShouldNot*(
   msg: string,
@@ -31,5 +31,4 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
         finally:
           if ord(what) == ord(shouldError): itShould(msg, caseName, didError)
           else: itShouldNot(msg, caseName, didError)
-
   )
