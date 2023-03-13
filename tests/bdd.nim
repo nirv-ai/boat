@@ -2,7 +2,7 @@ import std/sugar
 
 # TODO: both itShould & Not should be templates
 # ^ so we can lazy eval cond and wrap it in try, except
-# ^ or add an overload to accept a callback, think thats what everything else does
+# ^ or add an overload to accept a callback, think thats what everyone else does
 proc itShould*(
   msg: string,
   name = "test name: ",

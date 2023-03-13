@@ -40,11 +40,9 @@ proc parseLocalManifest*(self: Config, path = self.use): bool =
   self.parsed = loadConfig path
   result = true
 
-
 proc save*(self: Config): bool =
   ## serialize Self.parsed to disk @ self.cachedir | getCachDir() / <SELF.ID>.manifest.nim.ini
   result = true
-
 
 proc reload*(self: Config): bool =
   # starts with https?
@@ -59,6 +57,7 @@ proc reload*(self: Config): bool =
   # manifest seems to be okay! lets do the actual loading
     # parse and upsert to self.parsed
       # if manifest.nim.ini loads other manifests, recurse
+    # save parsed to disk
   # everything must be okay!
   case self.use.startsWith "https"
     of true: raise newException(CatchableError, "TODO: remote manifests not setup")
@@ -73,14 +72,17 @@ proc reload*(self: Config): bool =
               raise newException(CatchableError, "invalid file permissions")
             elif not self.use.endsWith ".ini":
               raise newException(CatchableError, "invalid file type")
-
-            result = self.parseLocalManifest()
+            elif not self.parseLocalManifest():
+              raise newException(CatchableError, "cant parse config")
           of pcDir, pcLinkToDir:
             raise newException(CatchableError, "TODO: loading from dir not setup")
       except CatchableError:
         debugEcho repr getCurrentException()
         raise newException(CatchableError, "unable to load conf from disk")
-
+  # TODO: pretty sure ADRs require saving to captains.log as well
+  # save is a critical action, dont catch it
+  if not self.save(): raise newException(CatchableError, "unable to cache parsed config to disk")
+  else: result = true
 
 proc load*(self: Config): bool =
   ## load whatever self.use points to
