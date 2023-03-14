@@ -1,0 +1,9 @@
+Config	boat/private/Config.html#Config	Config: Config	
+parseLocalManifest	boat/private/Config.html#parseLocalManifest,Config,string	Config: parseLocalManifest(self: Config; path: string = self.use): bool	
+localManifestIsValid	boat/private/Config.html#localManifestIsValid,Config,string	Config: localManifestIsValid(self: Config; path: string = self.use): bool	
+save	boat/private/Config.html#save,Config	Config: save(self: Config): bool	
+reload	boat/private/Config.html#reload,Config,string	Config: reload(self: Config; path = self.use): bool	
+load	boat/private/Config.html#load,Config	Config: load(self: Config): bool	
+Config	boat/private/Config.html#config	 Config	
+TLDR	boat/private/Config.html#config-tldr	  TLDR	
+todos	boat/private/Config.html#config-todos	  todos	
