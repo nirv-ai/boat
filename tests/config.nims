@@ -1,5 +1,13 @@
 --colors:off
+--define:nimExperimentalAsyncjsThen
+--define:nimExperimentalLinenoiseExtra
 --define:nimLegacyTypeMismatch
+--define:nimPreviewDotLikeOps
+--define:nimPreviewFloatRoundtrip
+--define:nimPreviewHashRef
+--define:nimPreviewJsonutilsHoleyEnum
+--define:nimUnittestColor:off
+--define:nimUnittestOutputLevel:PRINT_FAILURES
 --excessiveStackTrace:off
 --path:"$projectDir/../../src"
 --processing:off

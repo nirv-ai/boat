@@ -2,22 +2,26 @@
 
 import std / [os, strformat]
 
+import ./run.nims
+
 mode = ScriptMode.Verbose
 
 let
   # proxy for github || local machine
   rootDir = absolutePath normalizedPath "GITHUB_WORKSPACE".getEnv "."
 
-proc installDeps: void =
-  debugEcho """
+proc installDeps: (string, int) =
+  result = """
     sudo apt-fast -y install \
       valgrind
-  """.gorge
+  """.gorgeEx
 
-proc runTests: void =
-  withDir rootDir:
-    debugEcho fmt"testament --directory:{rootDir} all".gorge
+proc runTests: (string, int) =
+  result = withDir rootDir:
+    fmt"testament --directory:{rootDir} all".gorgeEx
 
 when isMainModule:
-  installDeps()
-  runTests()
+  for action in @[
+    installDeps,
+    runTests
+  ]: run action

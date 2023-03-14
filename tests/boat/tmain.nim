@@ -1,9 +1,9 @@
 discard """
 action: "run"
-valgrind: true
 output: '''
-All HANDS! cat o'nine tails; blue peter and landlubber
+All HANDS! cat o'nine tails! blue peter! OMG... landlubber
 '''
+valgrind: true
 """
 
 import boat
