@@ -21,10 +21,7 @@ import std/[
   strutils,
 ]
 
-# TODO: simply importing FileManager causes valgrind to throw
-# ^ weird cuz nothing is in there but stubs
-import BoatErrors, BoatConstants
-
+import BoatErrors, BoatConstants, FileManager
 
 type Config* = ref object of RootObj
   use*: string ## \

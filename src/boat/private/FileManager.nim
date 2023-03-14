@@ -5,10 +5,11 @@
 
 import ../../../bdd
 
+# valgrind throws if this file is imported into ./Config.nim
 import std/[
-    asyncdispatch,
+    asyncdispatch, # causes valgrind to throw
     locks,
-    threadpool,
+    threadpool, # causes valgrind to throw
   ]
 
 import BoatConstants, BoatErrors

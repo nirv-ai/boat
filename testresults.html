@@ -126,7 +126,7 @@
             <dt>Hostname</dt>
             <dd>spaceship</dd>
             <dt>Git Commit</dt>
-            <dd><code>46144e3b11c</code></dd>
+            <dd><code>7fe38510a7d</code></dd>
             <dt title="Git Branch reference">Branch ref.</dt>
             <dd>manifest</dd>
         </dl>
@@ -139,7 +139,7 @@
             <dt>Successful Tests</dt>
             <dd>
                 <span class="glyphicon glyphicon-ok-sign"></span>
-                2 (100.00%)
+                0 (0.00%)
             </dd>
             <dt>Skipped Tests</dt>
             <dd>
@@ -149,7 +149,7 @@
             <dt>Failed Tests</dt>
             <dd>
                 <span class="glyphicon glyphicon-exclamation-sign"></span>
-                0 (0.00%)
+                2 (100.00%)
             </dd>
         </dl>
         <div class="table-responsive">
@@ -201,64 +201,201 @@
             </table>
         </div>
         <div class="panel-group">
-            <div id="panel-testResult-boat_tests_boat_tmain_nim_c" class="panel panel-success">
+            <div id="panel-testResult-boat_tests_boat_tmain_nim_c" class="panel panel-danger">
                 <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" data-target="#panel-body-testResult-boat_tests_boat_tmain_nim_c" aria-controls="panel-body-testResult-boat_tests_boat_tmain_nim_c" aria-expanded="false">
                     <div class="row">
                         <h4 class="col-xs-3 col-sm-1 panel-title">
-                            <span class="glyphicon glyphicon-ok-sign"></span>
-                            <strong>PASS</strong>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <strong>FAIL</strong>
                         </h4>
                         <h4 class="col-xs-1 panel-title"><span class="badge">c</span></h4>
-                        <h4 class="col-xs-5 col-sm-7 panel-title" title="tests/boat/tmain.nim c"><code class="text-success">tests/boat/tmain.nim c</code></h4>
+                        <h4 class="col-xs-5 col-sm-7 panel-title" title="tests/boat/tmain.nim c"><code class="text-danger">tests/boat/tmain.nim c</code></h4>
                         <h4 class="col-xs-3 col-sm-3 panel-title text-right"><span class="badge">boat</span></h4>
                     </div>
                 </div>
-                <div id="panel-body-testResult-boat_tests_boat_tmain_nim_c" class="panel-body collapse bg-success">
+                <div id="panel-body-testResult-boat_tests_boat_tmain_nim_c" class="panel-body collapse bg-danger">
                     <dl class="dl-horizontal">
                         <dt>Name</dt>
-                        <dd><code class="text-success">tests/boat/tmain.nim c</code></dd>
+                        <dd><code class="text-danger">tests/boat/tmain.nim c</code></dd>
                         <dt>Category</dt>
                         <dd><span class="badge">boat</span></dd>
                         <dt>Timestamp</dt>
                         <dd>unknown</dd>
                         <dt>Nim Action</dt>
-                        <dd><code class="text-success">run</code></dd>
+                        <dd><code class="text-danger">run</code></dd>
                         <dt>Nim Backend Target</dt>
                         <dd><span class="badge">c</span></dd>
                         <dt>Code</dt>
-                        <dd><code class="text-success">reSuccess</code></dd>
+                        <dd><code class="text-danger">reExitcodesDiffer</code></dd>
                     </dl>
-                    <p class="sr-only">No output details</p>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Expected</th>
+                                    <th>Actual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><pre>exitcode: 0</pre></td>
+                                    <td><pre>exitcode: 1
+
+Output:
+==233188== Memcheck, a memory error detector
+==233188== Copyright (C) 2002-2017, and GNU GPL&apos;d, by Julian Seward et al.
+==233188== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==233188== Command: tests/boat/tmain
+==233188== 
+All HANDS! cat o&apos;nine tails! blue peter! OMG... landlubber
+==233188== 
+==233188== HEAP SUMMARY:
+==233188==     in use at exit: 6,417 bytes in 21 blocks
+==233188==   total heap usage: 3,021 allocs, 3,000 frees, 116,417 bytes allocated
+==233188== 
+==233188== 0 bytes in 1 blocks are definitely lost in loss record 1 of 9
+==233188==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==233188==    by 0x4005A22: malloc (rtld-malloc.h:56)
+==233188==    by 0x4005A22: _dl_find_object_update (dl-find_object.c:791)
+==233188==    by 0x400ECCF: dl_open_worker_begin (dl-open.c:735)
+==233188==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233188==    by 0x400DF99: dl_open_worker (dl-open.c:782)
+==233188==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233188==    by 0x400E34D: _dl_open (dl-open.c:883)
+==233188==    by 0x48FE6BB: dlopen_doit (dlopen.c:56)
+==233188==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233188==    by 0x49E2CF2: _dl_catch_error (dl-error-skeleton.c:227)
+==233188==    by 0x48FE1AD: _dlerror_run (dlerror.c:138)
+==233188==    by 0x48FE747: dlopen_implementation (dlopen.c:71)
+==233188==    by 0x48FE747: dlopen@@GLIBC_2.34 (dlopen.c:81)
+==233188== 
+==233188== 3,264 bytes in 12 blocks are possibly lost in loss record 9 of 9
+==233188==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==233188==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==233188==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==233188==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==233188==    by 0x4903834: allocate_stack (allocatestack.c:430)
+==233188==    by 0x4903834: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==233188==    by 0x11778C: createThread__pureZconcurrencyZthreadpool_489 (in /home/poop/git/private/nirv/boat/tests/boat/tmain)
+==233188==    by 0x11CF99: atmdotdotatsdotdotatsdotdotatsdotdotatsdotdotatsdotdotatsdotchoosenimatstoolchainsatsnimminus1dot6dot12atslibatspureatsconcurrencyatsthreadpooldotnim_Init000 (in /home/poop/git/private/nirv/boat/tests/boat/tmain)
+==233188==    by 0x10A540: main (in /home/poop/git/private/nirv/boat/tests/boat/tmain)
+==233188== 
+==233188== LEAK SUMMARY:
+==233188==    definitely lost: 0 bytes in 1 blocks
+==233188==    indirectly lost: 0 bytes in 0 blocks
+==233188==      possibly lost: 3,264 bytes in 12 blocks
+==233188==    still reachable: 3,153 bytes in 8 blocks
+==233188==         suppressed: 0 bytes in 0 blocks
+==233188== Reachable blocks (those to which a pointer was found) are not shown.
+==233188== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==233188== 
+==233188== For lists of detected and suppressed errors, rerun with: -s
+==233188== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</pre></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div id="panel-testResult-config_tests_config_tconfig_nim_c" class="panel panel-success">
+            <div id="panel-testResult-config_tests_config_tconfig_nim_c" class="panel panel-danger">
                 <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" data-target="#panel-body-testResult-config_tests_config_tconfig_nim_c" aria-controls="panel-body-testResult-config_tests_config_tconfig_nim_c" aria-expanded="false">
                     <div class="row">
                         <h4 class="col-xs-3 col-sm-1 panel-title">
-                            <span class="glyphicon glyphicon-ok-sign"></span>
-                            <strong>PASS</strong>
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                            <strong>FAIL</strong>
                         </h4>
                         <h4 class="col-xs-1 panel-title"><span class="badge">c</span></h4>
-                        <h4 class="col-xs-5 col-sm-7 panel-title" title="tests/config/tconfig.nim c"><code class="text-success">tests/config/tconfig.nim c</code></h4>
+                        <h4 class="col-xs-5 col-sm-7 panel-title" title="tests/config/tconfig.nim c"><code class="text-danger">tests/config/tconfig.nim c</code></h4>
                         <h4 class="col-xs-3 col-sm-3 panel-title text-right"><span class="badge">config</span></h4>
                     </div>
                 </div>
-                <div id="panel-body-testResult-config_tests_config_tconfig_nim_c" class="panel-body collapse bg-success">
+                <div id="panel-body-testResult-config_tests_config_tconfig_nim_c" class="panel-body collapse bg-danger">
                     <dl class="dl-horizontal">
                         <dt>Name</dt>
-                        <dd><code class="text-success">tests/config/tconfig.nim c</code></dd>
+                        <dd><code class="text-danger">tests/config/tconfig.nim c</code></dd>
                         <dt>Category</dt>
                         <dd><span class="badge">config</span></dd>
                         <dt>Timestamp</dt>
                         <dd>unknown</dd>
                         <dt>Nim Action</dt>
-                        <dd><code class="text-success">run</code></dd>
+                        <dd><code class="text-danger">run</code></dd>
                         <dt>Nim Backend Target</dt>
                         <dd><span class="badge">c</span></dd>
                         <dt>Code</dt>
-                        <dd><code class="text-success">reSuccess</code></dd>
+                        <dd><code class="text-danger">reExitcodesDiffer</code></dd>
                     </dl>
-                    <p class="sr-only">No output details</p>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Expected</th>
+                                    <th>Actual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><pre>exitcode: 0</pre></td>
+                                    <td><pre>exitcode: 1
+
+Output:
+==233194== Memcheck, a memory error detector
+==233194== Copyright (C) 2002-2017, and GNU GPL&apos;d, by Julian Seward et al.
+==233194== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==233194== Command: tests/config/tconfig
+==233194== 
+ref Exception(parent: nil, name: &quot;OSError&quot;, msg: &quot;No such file or directory\n
+Additional info: 192.168.1.1&quot;, trace: @[StackTraceEntry(procname: &quot;raiseOSError&quot;, line: 95, filename: &quot;oserr.nim&quot;, frameMsg: &quot;&quot;)], up: nil)
+ref Exception(parent: nil, name: &quot;OSError&quot;, msg: &quot;No such file or directory\n
+Additional info: http://www.not.https&quot;, trace: @[StackTraceEntry(procname: &quot;raiseOSError&quot;, line: 95, filename: &quot;oserr.nim&quot;, frameMsg: &quot;&quot;)], up: ref Exception(parent: nil, name: &quot;OSError&quot;, msg: &quot;No such file or directory\n
+Additional info: 192.168.1.1&quot;, trace: @[StackTraceEntry(procname: &quot;raiseOSError&quot;, line: 95, filename: &quot;oserr.nim&quot;, frameMsg: &quot;&quot;)], up: nil))
+==233194== 
+==233194== HEAP SUMMARY:
+==233194==     in use at exit: 6,417 bytes in 21 blocks
+==233194==   total heap usage: 3,027 allocs, 3,006 frees, 130,129 bytes allocated
+==233194== 
+==233194== 0 bytes in 1 blocks are definitely lost in loss record 1 of 9
+==233194==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==233194==    by 0x4005A22: malloc (rtld-malloc.h:56)
+==233194==    by 0x4005A22: _dl_find_object_update (dl-find_object.c:791)
+==233194==    by 0x400ECCF: dl_open_worker_begin (dl-open.c:735)
+==233194==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233194==    by 0x400DF99: dl_open_worker (dl-open.c:782)
+==233194==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233194==    by 0x400E34D: _dl_open (dl-open.c:883)
+==233194==    by 0x48FE6BB: dlopen_doit (dlopen.c:56)
+==233194==    by 0x49E2C27: _dl_catch_exception (dl-error-skeleton.c:208)
+==233194==    by 0x49E2CF2: _dl_catch_error (dl-error-skeleton.c:227)
+==233194==    by 0x48FE1AD: _dlerror_run (dlerror.c:138)
+==233194==    by 0x48FE747: dlopen_implementation (dlopen.c:71)
+==233194==    by 0x48FE747: dlopen@@GLIBC_2.34 (dlopen.c:81)
+==233194== 
+==233194== 3,264 bytes in 12 blocks are possibly lost in loss record 9 of 9
+==233194==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==233194==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==233194==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==233194==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==233194==    by 0x4903834: allocate_stack (allocatestack.c:430)
+==233194==    by 0x4903834: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==233194==    by 0x119A1C: createThread__pureZconcurrencyZthreadpool_489 (in /home/poop/git/private/nirv/boat/tests/config/tconfig)
+==233194==    by 0x12AAC9: atmdotdotatsdotdotatsdotdotatsdotdotatsdotdotatsdotdotatsdotchoosenimatstoolchainsatsnimminus1dot6dot12atslibatspureatsconcurrencyatsthreadpooldotnim_Init000 (in /home/poop/git/private/nirv/boat/tests/config/tconfig)
+==233194==    by 0x12BB9C: PreMain (in /home/poop/git/private/nirv/boat/tests/config/tconfig)
+==233194==    by 0x10A780: main (in /home/poop/git/private/nirv/boat/tests/config/tconfig)
+==233194== 
+==233194== LEAK SUMMARY:
+==233194==    definitely lost: 0 bytes in 1 blocks
+==233194==    indirectly lost: 0 bytes in 0 blocks
+==233194==      possibly lost: 3,264 bytes in 12 blocks
+==233194==    still reachable: 3,153 bytes in 8 blocks
+==233194==         suppressed: 0 bytes in 0 blocks
+==233194== Reachable blocks (those to which a pointer was found) are not shown.
+==233194== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==233194== 
+==233194== For lists of detected and suppressed errors, rerun with: -s
+==233194== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)</pre></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -267,7 +404,7 @@
             <p>
                 Report generated by: <code>testament</code> &ndash; Nim Tester
                 <br />
-                Made with Nim. Generated on: 2023-03-14 01:46:53 UTC-07:00
+                Made with Nim. Generated on: 2023-03-15 09:20:10 UTC-07:00
             </p>
         </footer>
     </div>
