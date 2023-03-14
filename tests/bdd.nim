@@ -7,22 +7,31 @@ import std/sugar
 export sugar
 
 proc itShould*(
-  msg: string,
-  name = "test name: ",
-  condition: bool,
-  istrue = true
-  ): void = doAssert condition == istrue, name & " -> " & msg
+    msg: string,
+    name = "test name: ",
+    condition: bool,
+    istrue = true
+  ): void =
+  ## asserts condition matches expectation
+  doAssert condition == istrue, name & " -> " & msg
 
 proc itShouldNot*(
-  msg: string,
-  name = "test name: ",
-  condition: bool
-  ): void = itShould msg, name, condition, false
+    msg: string,
+    name = "test name: ",
+    condition: bool
+  ): void =
+  ## asserts condition matches expectation
+  itShould msg, name, condition, false
 
 type What* = enum
-  should, shouldNot, shouldError, shouldNotError
+  ## expected result of some condition
+  should, ## be true
+  shouldError, ## when called
+  shouldNot, ## be true
+  shouldNotError, ## when called
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
+  ## simple assertions for use with testament
   (what: What, msg: string, condition: () -> bool) => (
     case what
       of should: itShould msg, caseName, condition()

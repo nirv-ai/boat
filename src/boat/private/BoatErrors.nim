@@ -1,3 +1,8 @@
+##
+## BoatErrors
+## ==========
+## Its an error to call this BoatErrors, should be BoatErrorsAndDefectsForRaisingExceptionsWhenThingsGoBad
+
 type BoatError* = ref object of CatchableError
 
 var tddError* = BoatError(msg: "TODO: this feature isnt ready yet")

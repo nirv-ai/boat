@@ -1,3 +1,8 @@
+##
+## BoatConstants
+## =============
+## the world is full of magic strings, patiently waiting for variable assignment
+
 import std/os
 
 import BoatErrors
@@ -13,7 +18,7 @@ let cacheDir* = getCacheDir() / boatDirName ## \
   ## captains manifest and other files
 
 let tempDir* = getTempDir() / boatDirName ## \
-  ## temporary directory for temporary things
+  ## temporary directory for temporary things to be stored temporarily
 
 for dir in @[cacheDir, tempDir]:
   try: discard dir.existsOrCreateDir
