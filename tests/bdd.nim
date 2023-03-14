@@ -1,3 +1,7 @@
+# TODO: follow the leader: https://www.chaijs.com/api/bdd/
+# we should aim to provide similar functionality
+# to ease the context switching between nim and our js stuff
+
 import std/sugar
 
 export sugar
@@ -5,30 +9,29 @@ export sugar
 proc itShould*(
   msg: string,
   name = "test name: ",
-  cond: bool,
+  condition: bool,
   istrue = true
-  ): void = doAssert cond == istrue, name & " -> " & msg
+  ): void = doAssert condition == istrue, name & " -> " & msg
 
 proc itShouldNot*(
   msg: string,
   name = "test name: ",
-  cond: bool
-  ): void = itShould msg, name, cond, false
+  condition: bool
+  ): void = itShould msg, name, condition, false
 
-# TODO: follow the leader: https://www.chaijs.com/api/bdd/
 type What* = enum
   should, shouldNot, shouldError, shouldNotError
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
-  (what: What, msg: string, cond: () -> bool) => (
+  (what: What, msg: string, condition: () -> bool) => (
     case what
-      of should: itShould(msg, caseName, cond())
-      of shouldNot: itShouldNot(msg, caseName, cond())
+      of should: itShould msg, caseName, condition()
+      of shouldNot: itShouldNot msg, caseName, condition()
       of shouldError, shouldNotError:
         var didError = false
-        try: discard cond()
+        try: discard condition()
         except CatchableError: didError = true
         finally:
-          if ord(what) == ord(shouldError): itShould(msg, caseName, didError)
-          else: itShouldNot(msg, caseName, didError)
+          if what.ord == shouldError.ord: itShould msg, caseName, didError
+          else: itShouldNot msg, caseName, didError
   )

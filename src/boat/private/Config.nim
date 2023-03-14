@@ -19,15 +19,9 @@ import std/[
   strutils,
 ]
 
-import BoatErrors
-
-const manifestName = "manifest.nim.ini" ## \
-  ## the captains manifest must be named manifest.nim.ini
-  ## TODO: ensure this is reflected in the docs
+import BoatErrors, BoatConstants
 
 type Config* = ref object of RootObj
-  cachedir*: string ## \
-    ## defaults to getCacheDir();
   use*: string ## \
     ## path on disk pointing to a manifest / or dir with a manifest
     ## URL pointing to a *.ini file
@@ -55,13 +49,15 @@ proc localManifestIsValid*(self: Config, path: string = self.use): bool =
     of pcDir, pcLinkToDir: self.localManifestIsValid self.use / manifestName
 
 proc save*(self: Config): bool =
-  ## serialize Self.parsed to disk @ self.cachedir | getCachDir() / <SELF.ID>.manifest.nim.ini
+  ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
+  ## updates captains manifest with stuffWeCached.self.use -> cache location
   result = true
 
 proc reload*(self: Config, path = self.use): bool =
   # starts with https?
     # ends with manifestName?
-      # recurse self.reload path = save remote file to disk
+      # save to boatConstants.tempDir / self.use
+      # recurse self.reload path = temp location
     # throw: urls must point to a manifest.nim.ini
   case path.startsWith "https"
     of true: raise tddError
@@ -70,9 +66,7 @@ proc reload*(self: Config, path = self.use): bool =
       except CatchableError:
         debugEcho repr getCurrentException()
         raise fileLoadError
-  # TODO: pretty sure ADRs require saving to captains.log as well
-  # save is a critical action, dont catch it
-  if not self.save(): raise fileSaveError
+  if not self.save(): raise fileSaveDefect
   else: result = true
 
 proc load*(self: Config): bool =
