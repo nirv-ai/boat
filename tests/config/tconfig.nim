@@ -4,7 +4,7 @@ valgrind: true
 exitcode: 0
 """
 
-import ../bdd
+import ../../bdd
 import ../helpers
 
 block baseCaseLoadFile:

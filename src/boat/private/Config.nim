@@ -1,17 +1,19 @@
 ##
 ## Config
 ## ======
-## provides a parser and standard interface
+## extendable interface for creating, parsing and saving boat configs
 
 ##[
 ## TLDR
 - come back later
 
-links
+todos
 -----
-- [parsecfg](https://nim-lang.org/docs/parsecfg.html)
-
+- cmd to parse arbitrarily, e.g. boat conf load ./some/dir
+- cmd to see current captains: e.g. boat conf list -> X, Y, Z
 ]##
+
+import ../../../bdd
 
 import std/[
   os,
@@ -19,12 +21,14 @@ import std/[
   strutils,
 ]
 
+# TODO: simply importing FileManager causes valgrind to throw
+# ^ weird cuz nothing is in there but stubs
 import BoatErrors, BoatConstants
+
 
 type Config* = ref object of RootObj
   use*: string ## \
-    ## path on disk pointing to a manifest / or dir with a manifest
-    ## URL pointing to a *.ini file
+    ## filepath, dir containing a file or remote uri
   #--- private ---#
   parsed: parsecfg.Config ## \
     ## the parsed config after loading
@@ -51,6 +55,7 @@ proc localManifestIsValid*(self: Config, path: string = self.use): bool =
 proc save*(self: Config): bool =
   ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
   ## updates captains manifest with stuffWeCached.self.use -> cache location
+  # should call fileManager.toDisk
   result = true
 
 proc reload*(self: Config, path = self.use): bool =
@@ -72,6 +77,6 @@ proc reload*(self: Config, path = self.use): bool =
 proc load*(self: Config): bool =
   ## load whatever self.use points to
   result = if self.saved:
-    if self.parsed is Config: true # TODO: ensure this checks its a Config instance
-    else: raise tddError # self.parse() TODO: need to load from cacheDir
+    if self.parsed is Config: true # TODO: ensure this checks its a Config instance and not typedesc
+    else: raise tddError # should call fileManager.fromDisk
   else: self.reload()

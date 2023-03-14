@@ -3,16 +3,17 @@
 ## ===========
 ## Saving to and Retrieving from disk
 
+import ../../../bdd
+
 import std/[
-  asyncdispatch,
-  locks,
-  parsecfg,
-  threadpool,
+    asyncdispatch,
+    locks,
+    threadpool,
   ]
 
 import BoatConstants, BoatErrors
 
-export asyncdispatch
+# export asyncdispatch
 
 type SaveType* = enum
   parsedConfig,
@@ -24,12 +25,12 @@ proc fileDir*(self: SaveType): string =
     of parsedConfig, upsertManifest: cacheDir
     else: tempDir
 
-proc toDisk*[T: Config | string](
+proc toDisk*[T](
     self: SaveType,
     fname: string,
     data: T,
-  ): Future[bool] {.async.} =
-  ## persists data to cache or temp dir
+  ): Future[string] {.async.} =
+  ## persists data to cache or temp dir and returns path
   ## if file already exists, will overwrite if content is different
   raise tddError
   # file exists ?
@@ -41,7 +42,7 @@ proc toDisk*[T: Config | string](
     # return success
   result = true
 
-proc fromDisk*[T: Config | string](
+proc fromDisk*[T](
     self: SaveType,
     fname: string,
     to: T,

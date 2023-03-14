@@ -9,13 +9,14 @@ import BoatErrors
 
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini
-  ## TODO: ensure this is reflected in the docs
+  ## contains / points to other manifests
 
 const boatDirName* = "boat" ## \
   ## parent directory for all boat assets
 
 let cacheDir* = getCacheDir() / boatDirName ## \
   ## captains manifest and other files
+  ## that should persist across invocations
 
 let tempDir* = getTempDir() / boatDirName ## \
   ## temporary directory for temporary things to be stored temporarily

@@ -1,10 +1,20 @@
-# TODO: follow the leader: https://www.chaijs.com/api/bdd/
-# we should aim to provide similar functionality
-# to ease the context switching between nim and our js stuff
+##
+## Bdd
+## ===
+## simple assertions for use with testament
+
+# follow the leader: https://www.chaijs.com/api/bdd/
+
 
 import std/sugar
 
 export sugar
+
+type TddError* = ref object of CatchableError
+  ## generic error for test driven development
+
+var tddError* = TddError(msg: "TODO: this feature isnt ready yet") ## \
+  ## ready to be raised tddError
 
 proc itShould*(
     msg: string,
@@ -13,6 +23,7 @@ proc itShould*(
     istrue = true
   ): void =
   ## asserts condition matches expectation
+  ## prefer creating a test case with bdd
   doAssert condition == istrue, name & " -> " & msg
 
 proc itShouldNot*(
@@ -21,6 +32,7 @@ proc itShouldNot*(
     condition: bool
   ): void =
   ## asserts condition matches expectation
+  ## prefer creating a test case with bdd
   itShould msg, name, condition, false
 
 type What* = enum
@@ -32,6 +44,8 @@ type What* = enum
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## simple assertions for use with testament
+  ## provide a test name and receive a fn that
+  ## validates condition matches expectation
   (what: What, msg: string, condition: () -> bool) => (
     case what
       of should: itShould msg, caseName, condition()
@@ -39,7 +53,7 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
       of shouldError, shouldNotError:
         var didError = false
         try: discard condition()
-        except CatchableError: didError = true
+        except CatchableError, OSError: didError = true
         finally:
           if what.ord == shouldError.ord: itShould msg, caseName, didError
           else: itShouldNot msg, caseName, didError

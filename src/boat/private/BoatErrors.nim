@@ -1,11 +1,9 @@
 ##
 ## BoatErrors
 ## ==========
-## Its an error to call this BoatErrors, should be BoatErrorsAndDefectsForRaisingExceptionsWhenThingsGoBad
+## standard errors and defects
 
 type BoatError* = ref object of CatchableError
-
-var tddError* = BoatError(msg: "TODO: this feature isnt ready yet")
 
 var configParseError* = BoatError(msg: "Cant Parse Config")
 var fileLoadError* = BoatError(msg: "Cant Load File")
