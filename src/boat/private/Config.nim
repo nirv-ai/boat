@@ -13,7 +13,7 @@ todos
 - cmd to see current captains: e.g. boat conf list -> X, Y, Z
 ]##
 
-import ../../../bdd
+from ../../../bdd import tddError
 
 import std/[
   os,
@@ -21,18 +21,24 @@ import std/[
   strutils,
 ]
 
-import BoatErrors, BoatConstants, FileManager
+import
+  BoatConstants,
+  BoatErrors,
+  FileManager
+
+var captainsLog* {.global.} = newConfig() ## \
+  ## captains log is the world
 
 type Config* = ref object of RootObj
   use*: string ## \
     ## filepath, dir containing a file or remote uri
-  #--- private ---#
+
   parsed: parsecfg.Config ## \
     ## the parsed config after loading
-  saved: bool ## \
-    ## true if self.use has been saved to disk
+  parsedPath: string ## \
+    ## path on disk the parsed config was saved to
 
-proc parseLocalManifest*(self: Config, path: string = self.use): bool =
+proc parseLocalManifest*(self: Config, path = self.use): bool =
   ## parse self.use to self.parsed
   ## prefer calling self.load or self.reload for validation
   self.parsed = loadConfig path
@@ -47,15 +53,18 @@ proc localManifestIsValid*(self: Config, path: string = self.use): bool =
       elif not path.endsWith manifestName: raise manifestNameError
       elif not self.parseLocalManifest path: raise configParseError
       else: true
-    of pcDir, pcLinkToDir: self.localManifestIsValid self.use / manifestName
+    of pcDir, pcLinkToDir:
+      # force directories to use their manifest
+      self.use = self.use / manifestName
+      self.localManifestIsValid()
 
-proc save*(self: Config): bool =
+proc save*(self: Config, path = self.use): bool =
   ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
   ## updates captains manifest with stuffWeCached.self.use -> cache location
   # should call fileManager.toDisk
   result = true
 
-proc reload*(self: Config, path = self.use): bool =
+proc init*(self: Config, path = self.use): bool =
   # starts with https?
     # ends with manifestName?
       # save to boatConstants.tempDir / self.use
@@ -68,12 +77,27 @@ proc reload*(self: Config, path = self.use): bool =
       except CatchableError:
         debugEcho repr getCurrentException()
         raise fileLoadError
-  if not self.save(): raise fileSaveDefect
+  if not self.save path : raise fileSaveDefect
   else: result = true
 
+proc reload*(self: Config): bool =
+  ## reloads a configuration from disk
+  # (fpath, T) = FileMananger.fromDisk(...)
+    # self.parsedPath = fpath, self.parsed = T
+  raise tddError
+
 proc load*(self: Config): bool =
-  ## load whatever self.use points to
-  result = if self.saved:
-    if self.parsed is Config: true # TODO: ensure this checks its a Config instance and not typedesc
-    else: raise tddError # should call fileManager.fromDisk
-  else: self.reload()
+  ## (re)load a Configuration; safer than calling reload specifically
+  result =
+    if captainsLogLoaded and self.parsedPath.len is Positive: self.reload()
+    else: self.init()
+
+proc loadCaptainsLog(): void =
+  ## loads the global manifest, or set an empty Config
+  if not captainsLogLoaded: echo "loading captains log"
+    # captainsLogLoaded = true
+    # let (fpath, prevCaptainsLog) = captainsLog.fromDisk(cacheDir / manifestName, Config, false)
+    # captainsLog = prevCaptainsLog
+
+# always load the captainsLog
+if not captainsLogLoaded: loadCaptainsLog()

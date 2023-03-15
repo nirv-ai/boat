@@ -7,6 +7,9 @@ import std/os
 
 import BoatErrors
 
+var captainsLogLoaded* {.global.} = false ## \
+  ## true if we've loaded the captains log from disk into ram
+
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini
   ## contains / points to other manifests

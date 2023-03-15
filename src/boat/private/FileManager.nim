@@ -3,56 +3,58 @@
 ## ===========
 ## Saving to and Retrieving from disk
 
-import ../../../bdd
+from ../../../bdd import tddError
 
-# valgrind throws if this file is imported into ./Config.nim
 import std/[
-    asyncdispatch, # causes valgrind to throw
+    asyncdispatch,
     locks,
-    threadpool, # causes valgrind to throw
+    threadpool,
   ]
 
 import BoatConstants, BoatErrors
 
-# export asyncdispatch
+export asyncdispatch
 
 type SaveType* = enum
   parsedConfig,
-  upsertManifest,
+  captainsLog,
   remoteManifest,
 
 proc fileDir*(self: SaveType): string =
   result = case self
-    of parsedConfig, upsertManifest: cacheDir
+    of parsedConfig, captainsLog: cacheDir
     else: tempDir
 
 proc toDisk*[T](
     self: SaveType,
     fname: string,
     data: T,
-  ): Future[string] {.async.} =
+): Future[string] {.async.} =
   ## persists data to cache or temp dir and returns path
   ## if file already exists, will overwrite if content is different
+  ## any file saved to cacheDir will be added to the captains log
   raise tddError
   # file exists ?
     # content is same? return true
   # persist data
     # lock
     # save as self.fileDir / hash(fname)
+    # if saving to cacheDir
+      # update captainsLog with fname -> hash(fname) so we can retrieve later
     # unlock
     # return success
-  result = true
+  result = ""
 
 proc fromDisk*[T](
     self: SaveType,
     fname: string,
     to: T,
     errorNotFound = false
-  ): Future[T] {.async.} =
-  ## parse to T and return T
+): Future[(string, T)] {.async.} =
+  ## load hash(fname) and parse to T returning (fpath, T)
   ## throws if errorNotFound is true; else returns empty T
   raise tddError
   # yield readAsync self.fileDir / hash(fname)
   # if file not found / cant be read then throw if errorNotFound is true
   if errorNotFound and "cant load file" is string: raise fileLoadError
-  else: result = new(to)
+  else: result = ("", new(to))
