@@ -93,11 +93,11 @@ proc load*(self: Config): bool =
     else: self.init()
 
 proc loadCaptainsLog(): void =
-  ## loads the global manifest, or set an empty Config
+  ## loads the previous or initializes a new captains log
   if not captainsLogLoaded: echo "loading captains log"
     # captainsLogLoaded = true
     # let (fpath, prevCaptainsLog) = captainsLog.fromDisk(cacheDir / manifestName, Config, false)
     # captainsLog = prevCaptainsLog
 
-# always load the captainsLog
+# always load the captainsLog into ram
 if not captainsLogLoaded: loadCaptainsLog()

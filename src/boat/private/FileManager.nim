@@ -38,7 +38,9 @@ proc toDisk*[T](
     # content is same? return true
   # persist data
     # lock
-    # save as self.fileDir / hash(fname)
+    # hash(data) && save as self.fileDir / hash(fname)
+      # we skipped https://nim-lang.org/docs/hashes.html
+      # just save as is for now and swing back when base logic is working
     # if saving to cacheDir
       # update captainsLog with fname -> hash(fname) so we can retrieve later
     # unlock
