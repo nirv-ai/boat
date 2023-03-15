@@ -8,6 +8,8 @@
 --define:nimPreviewJsonutilsHoleyEnum
 --define:nimUnittestColor:off
 --define:nimUnittestOutputLevel:PRINT_FAILURES
+--define:useMalloc # required for valgrind
 --excessiveStackTrace:off
+--mm:orc # required for valgrind
 --path:"$projectDir/../../src"
 --processing:off

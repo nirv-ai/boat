@@ -1,7 +1,8 @@
 discard """
 action: "run"
-valgrind: "leaks"
+cmd: "nim $target --hints:on -d:testing --mm:orc -d:useMalloc --nimblePath:build/deps/pkgs $options $file"
 exitcode: 0
+valgrind: true
 """
 
 import ../../bdd

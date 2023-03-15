@@ -3,6 +3,7 @@
 --define:nimStrictDelete
 --define:ssl
 --define:threadsafe
+--define:useMalloc
 --hints:on
 --mm:orc
 --multimethods:on
