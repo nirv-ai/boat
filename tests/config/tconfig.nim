@@ -1,6 +1,6 @@
 discard """
 action: "run"
-valgrind: true
+valgrind: "leaks"
 exitcode: 0
 """
 
