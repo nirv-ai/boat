@@ -3,16 +3,19 @@
 ## ===========
 ## Saving to and Retrieving from disk
 
+# valgrind throws if this file is imported into any other file
+import std/asyncdispatch # causes valgrind to throw
+import std/threadpool # causes valgrind to throw
+
 # import ../../../bdd
 
-# valgrind throws if this file is imported into ./Config.nim
-import std/[
-    asyncdispatch, # causes valgrind to throw
-    # locks,
-    threadpool, # causes valgrind to throw
-  ]
+# import std/[
+#     asyncdispatch,
+#     locks,
+#     threadpool,
+#   ]
 
-import BoatConstants, BoatErrors
+# import BoatConstants, BoatErrors
 
 # export asyncdispatch
 
