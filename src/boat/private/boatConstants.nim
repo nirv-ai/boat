@@ -5,7 +5,17 @@
 
 import std/os
 
-import BoatErrors
+from json import JsonNode
+from parsecfg import Config
+
+import boatErrors
+
+type BoatConfigKind* = Config | JsonNode ## \
+  ## a Config generally means a manifest
+  ## while JsonNode indicates a captainslog
+
+var captainsLogLoaded* {.global.} = false ## \
+  ## true if we've loaded the captains log from disk into ram
 
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini
@@ -26,3 +36,5 @@ for dir in @[cacheDir, tempDir]:
   except CatchableError:
     debugEcho repr getCurrentException()
     raise dirCreateDefect
+
+export json.JsonNode, parsecfg.Config

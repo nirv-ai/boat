@@ -17,30 +17,30 @@ var tddError* = TddError(msg: "TODO: this feature isnt ready yet") ## \
   ## ready to be raised tddError
 
 proc itShould*(
-    msg: string,
-    name = "test name: ",
-    condition: bool,
-    istrue = true
+  msg: string,
+  name = "test name: ",
+  condition: bool,
+  istrue = true
   ): void =
-  ## asserts condition matches expectation
-  ## prefer creating a test case with bdd
-  doAssert condition == istrue, name & " -> " & msg
+    ## asserts condition matches expectation
+    ## prefer creating a test case with bdd
+    doAssert condition == istrue, name & " -> " & msg
 
 proc itShouldNot*(
-    msg: string,
-    name = "test name: ",
-    condition: bool
+  msg: string,
+  name = "test name: ",
+  condition: bool
   ): void =
-  ## asserts condition matches expectation
-  ## prefer creating a test case with bdd
-  itShould msg, name, condition, false
+    ## asserts condition matches expectation
+    ## prefer creating a test case with bdd
+    itShould msg, name, condition, false
 
 type What* = enum
   ## expected result of some condition
   should, ## be true
-  shouldError, ## when called
+  shouldRaise, ## error when called
   shouldNot, ## be true
-  shouldNotError, ## when called
+  shouldNotRaise, ## error when called
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## simple assertions for use with testament
@@ -50,11 +50,22 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
     case what
       of should: itShould msg, caseName, condition()
       of shouldNot: itShouldNot msg, caseName, condition()
-      of shouldError, shouldNotError:
-        var didError = false
+      of shouldRaise, shouldNotRaise:
+        var didRaise = false
         try: discard condition()
-        except CatchableError, OSError: didError = true
+        except CatchableError, OSError: didRaise = true
         finally:
-          if what.ord == shouldError.ord: itShould msg, caseName, didError
-          else: itShouldNot msg, caseName, didError
+          if what.ord == shouldRaise.ord: itShould msg, caseName, didRaise
+          else: itShouldNot msg, caseName, didRaise
   )
+
+
+when isMainModule:
+  proc catchme: bool = raise TddError(msg: "if you can")
+
+  let it = bdd "bdd tests"
+  it should, "be true", () => true
+  it shouldNot, "be true", () => false
+  it shouldRaise, "error", () => catchme()
+  it shouldNotRaise, "error", () => true
+  it shouldNotRaise, "or care about result", () => false
