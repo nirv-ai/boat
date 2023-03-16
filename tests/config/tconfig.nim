@@ -21,6 +21,6 @@ block todoCases:
   it should, "save config", () => newConf().save()
 
   for conf in @[
-    newConf("192.168.1.1"),
-    newConf("http://www.not.https")
-  ]: it shouldError, "invalid protocol", () => conf.load()
+    newConf(use = "192.168.1.1"),
+    newConf(use = "http://www.not.https")
+  ]: it shouldRaise, "invalid protocol", () => conf.load()

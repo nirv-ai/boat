@@ -6,16 +6,14 @@
 from ../../../bdd import tddError
 
 import std/[
-  asyncdispatch,
-  json,
   locks,
-  parsecfg,
   threadpool,
-  ]
+]
 
-import BoatConstants, BoatErrors
-
-export asyncdispatch
+import
+  boatConstants,
+  boatErrors,
+  fileManagerUtils
 
 type SaveType* = enum
   parsedConfig,
@@ -39,15 +37,6 @@ proc encode*[T: JsonNode | string](self: T): string =
   # of JsonNode -> parse to string -> base64
   # of string -> base64
 
-proc persist*[T: string | Config](self: T, path: string): Future[void] {.async.} =
-  ## writes strings to path
-  ## calls parsecfg.writeConfig for configs
-  raise tddError
-  # lock
-  # of string -> data.write path
-  # of Config -> parsecfg.writeConfig path
-  # unlock
-  # throw if any errors occur
 
 proc toDisk*[T: JsonNode | string | Config](
   self: SaveType,
@@ -86,3 +75,6 @@ proc fromDisk*[T](
     # if file not found / cant be read then throw if errorNotFound is true
     if errorNotFound and "cant load file" is string: raise fileLoadError
     else: result = ("", new(to))
+
+
+export fileManagerUtils

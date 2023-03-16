@@ -5,7 +5,12 @@
 
 import std/os
 
-import BoatErrors
+from json import JsonNode
+from parsecfg import Config
+
+import boatErrors
+
+type BoatConfigKind* = Config | JsonNode
 
 var captainsLogLoaded* {.global.} = false ## \
   ## true if we've loaded the captains log from disk into ram
@@ -29,3 +34,5 @@ for dir in @[cacheDir, tempDir]:
   except CatchableError:
     debugEcho repr getCurrentException()
     raise dirCreateDefect
+
+export json.JsonNode, parsecfg.Config

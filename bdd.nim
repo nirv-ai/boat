@@ -38,9 +38,9 @@ proc itShouldNot*(
 type What* = enum
   ## expected result of some condition
   should, ## be true
-  shouldError, ## when called
+  shouldRaise, ## error when called
   shouldNot, ## be true
-  shouldNotError, ## when called
+  shouldNotRaise, ## error when called
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## simple assertions for use with testament
@@ -50,11 +50,21 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
     case what
       of should: itShould msg, caseName, condition()
       of shouldNot: itShouldNot msg, caseName, condition()
-      of shouldError, shouldNotError:
+      of shouldRaise, shouldNotRaise:
         var didError = false
         try: discard condition()
         except CatchableError, OSError: didError = true
         finally:
-          if what.ord == shouldError.ord: itShould msg, caseName, didError
+          if what.ord == shouldRaise.ord: itShould msg, caseName, didError
           else: itShouldNot msg, caseName, didError
   )
+
+
+when isMainModule:
+  proc catchme: bool = raise newException(CatchableError, "if you can")
+  let it = bdd "bdd tests"
+
+  it should, "be true", () => true
+  it shouldNot, "be true", () => false
+  it shouldRaise, "error", () => catchme()
+  it shouldNotRaise, "error", () => true
