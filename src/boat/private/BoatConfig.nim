@@ -19,7 +19,7 @@ import std/[
   json,
   os,
   strutils,
-]
+  ]
 
 import
   BoatConstants,
@@ -29,11 +29,10 @@ import
 
 # consumers can retrieve the parsed Config and path on disk
 # but only internal functions should be able to set it
-export BoatConfigType, parsed, parsedPath
+export BoatConfigType.BoatConfig, parsed, parsedPath
 
 var captainsLog* {.global.} = %* {} ## \
   ## captains log is the world
-
 
 proc parseLocalManifest*(self: BoatConfig, path = self.use): bool =
   ## parse self.use to self.parsed

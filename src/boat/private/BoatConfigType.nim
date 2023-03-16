@@ -3,6 +3,7 @@ import std/parsecfg
 export parsecfg
 
 type BoatConfig* = ref object of RootObj
+  ## base type for all boat configs
   use*: string ## \
     ## filepath, dir containing a file or remote uri
 

@@ -21,19 +21,19 @@ proc itShould*(
   name = "test name: ",
   condition: bool,
   istrue = true
-): void =
-  ## asserts condition matches expectation
-  ## prefer creating a test case with bdd
-  doAssert condition == istrue, name & " -> " & msg
+  ): void =
+    ## asserts condition matches expectation
+    ## prefer creating a test case with bdd
+    doAssert condition == istrue, name & " -> " & msg
 
 proc itShouldNot*(
   msg: string,
   name = "test name: ",
   condition: bool
-): void =
-  ## asserts condition matches expectation
-  ## prefer creating a test case with bdd
-  itShould msg, name, condition, false
+  ): void =
+    ## asserts condition matches expectation
+    ## prefer creating a test case with bdd
+    itShould msg, name, condition, false
 
 type What* = enum
   ## expected result of some condition
