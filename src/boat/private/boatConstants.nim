@@ -10,7 +10,9 @@ from parsecfg import Config
 
 import boatErrors
 
-type BoatConfigKind* = Config | JsonNode
+type BoatConfigKind* = Config | JsonNode ## \
+  ## a Config generally means a manifest
+  ## while JsonNode indicates a captainslog
 
 var captainsLogLoaded* {.global.} = false ## \
   ## true if we've loaded the captains log from disk into ram

@@ -51,20 +51,21 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
       of should: itShould msg, caseName, condition()
       of shouldNot: itShouldNot msg, caseName, condition()
       of shouldRaise, shouldNotRaise:
-        var didError = false
+        var didRaise = false
         try: discard condition()
-        except CatchableError, OSError: didError = true
+        except CatchableError, OSError: didRaise = true
         finally:
-          if what.ord == shouldRaise.ord: itShould msg, caseName, didError
-          else: itShouldNot msg, caseName, didError
+          if what.ord == shouldRaise.ord: itShould msg, caseName, didRaise
+          else: itShouldNot msg, caseName, didRaise
   )
 
 
 when isMainModule:
-  proc catchme: bool = raise newException(CatchableError, "if you can")
-  let it = bdd "bdd tests"
+  proc catchme: bool = raise TddError(msg: "if you can")
 
+  let it = bdd "bdd tests"
   it should, "be true", () => true
   it shouldNot, "be true", () => false
   it shouldRaise, "error", () => catchme()
   it shouldNotRaise, "error", () => true
+  it shouldNotRaise, "or care about result", () => false

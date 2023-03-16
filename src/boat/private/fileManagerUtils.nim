@@ -8,10 +8,13 @@ import std/[
 
 import boatErrors, boatConstants
 
+type FileType* = enum
+  captainsLog,
+  localManifest,
+  remoteManifest,
 
-proc persist*[T: string | Config](self: T, path: string): Future[void] {.async.} =
-  ## writes strings to path
-  ## calls parsecfg.writeConfig for configs
+proc persist*[T: FileType](self: T, path: string): Future[void] {.async.} =
+  ## persists a FileType to path
   raise tddError
   # lock
   # of string -> data.write path
@@ -19,12 +22,13 @@ proc persist*[T: string | Config](self: T, path: string): Future[void] {.async.}
   # unlock
   # throw if any errors occur
 
-proc retrieve*[T: BoatConfigKind](self: T, path: string): T =
-  # retrieves a Config or Json from a path
+proc retrieve*[T: FileType](self: T, path: string): BoatConfigKind =
+  ## retrieves a FileType from path and parses to BoatConfigKind
   try:
-    if self is Config: result = loadConfig path
-    elif self is JsonNode: raise tddError # should load json from path
-    else: raise boatConfigKindError
+    result = case self
+      of captainsLog: raise tddError # parse to json
+      of localManifest: loadConfig path
+      of remoteManifest: raise tddError # download, then loadConfig path
   except CatchableError:
     debugEcho repr getCurrentException()
     raise fileLoadDefect

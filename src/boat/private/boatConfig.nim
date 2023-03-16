@@ -7,10 +7,6 @@
 ## TLDR
 - come back later
 
-todos
------
-- cmd to parse arbitrarily, e.g. boat conf load ./some/dir
-- cmd to see current captains: e.g. boat conf list -> X, Y, Z
 ]##
 
 from ../../../bdd import tddError
@@ -31,15 +27,12 @@ import
 var captainsLog* {.global.} = %* {} ## \
   ## captains log is the world
 
-proc parseLocalManifest*(self: BoatConfig, path: string = ""): bool =
-  ## parse self.use to self.parsed
-  ## prefer calling self.load or self.reload for validation
-  let usePath = self.usePath path
-
-  # self.parsed = self.parsed.retrieve usePath
+proc parseManifest*(self: BoatConfig, path: string = "", ft: FileType): bool =
+  ## sets self.parsed to the parsed manifest
+  self.parsed = ft.retrieve self.usePath path
   result = true
 
-proc localManifestIsValid*(self: BoatConfig, path: string = ""): bool =
+proc manifestIsValid*(self: BoatConfig, path: string = ""): bool =
   ## throws if manifest not found, cant be read, or errors during parsing
   let usePath = self.usePath path
   let pathInfo = usePath.getFileInfo
@@ -48,12 +41,12 @@ proc localManifestIsValid*(self: BoatConfig, path: string = ""): bool =
     of pcFile, pcLinkToFile:
       if fpUserRead notin pathInfo.permissions: raise filePermissionError
       elif not usePath.endsWith manifestName: raise manifestNameError
-      elif not self.parseLocalManifest usePath: raise configParseError
+      elif not self.parseManifest(usePath, localManifest): raise configParseError
       else: true
     of pcDir, pcLinkToDir:
       # force directories to use their manifest
       self.use = self.use / manifestName
-      self.localManifestIsValid()
+      self.manifestIsValid
 
 proc save*(self: BoatConfig, path: string = ""): bool =
   ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
@@ -61,49 +54,40 @@ proc save*(self: BoatConfig, path: string = ""): bool =
   # should call fileManager.toDisk
   result = true
 
-proc init*(self: BoatConfig, path: string = ""): bool =
-  let usePath = self.usePath path
+proc init*(self: BoatConfig): bool =
   # starts with https?
     # ends with manifestName?
-      # save to boatConstants.tempDir / self.use
-      # recurse self.reload path = temp location
+      # check FileManagerUtils.retrieve
+      # it should contain logic for loading remote manifests
     # throw: urls must point to a manifest.nim.ini
-  case usePath.startsWith "https"
+  case self.use.startsWith "https"
     of true: raise tddError
     else:
-      try: doAssert self.localManifestIsValid(path) == true
+      try: doAssert self.manifestIsValid == true
       except CatchableError:
         debugEcho repr getCurrentException()
         raise fileLoadError
-  if not self.save usePath: raise fileSaveDefect
+  if not self.save: raise fileSaveDefect
   else: result = true
 
 proc reload*(self: BoatConfig): bool =
-  ## reloads a configuration from disk
-  # (fpath, T) = FileMananger.fromDisk(...)
-    # self.parsedPath = fpath, self.parsed = T
+  ## reloads a configuration from captainsLog
   raise tddError
 
 proc load*(self: BoatConfig): bool =
-  ## (re)load a Configuration; safer than calling reload specifically
+  ## (re)load a Configuration
   result =
-    if captainsLogLoaded and self.parsedPath.len is Positive: self.reload()
-    else: self.init()
+    # if self.use in captainsLog ? reload from captainslog
+    if 1 > 2: raise tddError
+    else: self.init
 
 proc loadCaptainsLog(): void =
   ## loads the previous or initializes a new captains log
-  if not captainsLogLoaded: echo "loading captains log"
-    # captainsLogLoaded = true
-    # let (fpath, prevCaptainsLog) = captainsLog.fromDisk(cacheDir / manifestName, JsonNode, false)
-    # captainsLog = prevCaptainsLog
+  captainsLogLoaded = true
+  # try to retrieve the prev captainslog from cachDir
+  # else initialize an empty captainslog
 
 # always load the captainsLog into ram
 if not captainsLogLoaded: loadCaptainsLog()
 
-
-# consumers can retrieve the parsed Config and path on disk
-# but only internal functions should be able to set it
-export
-  boatConfigType.BoatConfig,
-  parsed,
-  parsedPath
+export boatConfigType

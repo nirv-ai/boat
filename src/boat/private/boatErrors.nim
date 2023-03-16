@@ -20,4 +20,4 @@ type BoatDefect = ref object of Defect ## \
 var dirCreateDefect* = BoatDefect(msg: "Dir Create Failed")
 var fileLoadDefect* = BoatDefect(msg: "Cant Load File")
 var fileSaveDefect* = BoatDefect(msg: "Cant Save File")
-var boatConfigKindError* = BoatDefect(msg: fmt"Expected BoatConfigKind")
+var boatConfigKindError* = BoatDefect(msg: fmt"Expected typeof BoatConfigKind")

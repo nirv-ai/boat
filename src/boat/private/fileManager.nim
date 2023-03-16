@@ -5,29 +5,25 @@
 
 from ../../../bdd import tddError
 
-import std/[
-  locks,
-  threadpool,
-]
+# import std/[
+#   locks,
+#   threadpool,
+# ]
 
 import
   boatConstants,
   boatErrors,
   fileManagerUtils
 
-type SaveType* = enum
-  parsedConfig,
-  captainsLog,
-  remoteManifest,
 
-proc dir*(self: SaveType): string =
-  ## returns the directory where different SaveTypes are persisted
+proc dir*(self: FileType): string =
+  ## returns the directory where different FileTypes are persisted
   result = case self
-    of parsedConfig, captainsLog: cacheDir
+    of localManifest, captainsLog: cacheDir
     else: tempDir
 
-proc path*(self: SaveType, fname: string): string =
-  ## computes the filpath for a SaveType
+proc path*(self: FileType, fname: string): string =
+  ## computes the filpath for a FileType
   raise tddError
   # result = self.dir / hash(fname)
 
@@ -39,7 +35,7 @@ proc encode*[T: JsonNode | string](self: T): string =
 
 
 proc toDisk*[T: JsonNode | string | Config](
-  self: SaveType,
+  self: FileType,
   fname: string,
   data: T,
   captainsLog: JsonNode
@@ -63,7 +59,7 @@ proc toDisk*[T: JsonNode | string | Config](
 
 
 proc fromDisk*[T](
-  self: SaveType,
+  self: FileType,
   fname: string,
   to: T,
   errorNotFound = false
