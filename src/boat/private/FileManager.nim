@@ -7,7 +7,9 @@ from ../../../bdd import tddError
 
 import std/[
     asyncdispatch,
+    json,
     locks,
+    parsecfg,
     threadpool,
   ]
 
@@ -25,7 +27,7 @@ proc fileDir*(self: SaveType): string =
     of parsedConfig, captainsLog: cacheDir
     else: tempDir
 
-proc toDisk*[T](
+proc toDisk*[T: JsonNode | string | Config](
     self: SaveType,
     fname: string,
     data: T,
@@ -38,9 +40,11 @@ proc toDisk*[T](
     # content is same? return true
   # persist data
     # lock
-    # hash(data) && save as self.fileDir / hash(fname)
-      # we skipped https://nim-lang.org/docs/hashes.html
-      # just save as is for now and swing back when base logic is working
+    # encode(data)
+      # of JsonNode -> parse to string -> base64
+      # of string -> base64
+      # of Config ->
+    # save as self.fileDir / hash(fname)
     # if saving to cacheDir
       # update captainsLog with fname -> hash(fname) so we can retrieve later
     # unlock

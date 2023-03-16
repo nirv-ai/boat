@@ -1,5 +1,6 @@
 --debugger:native
 --deepcopy:on
+--define:nimPreviewHashRef
 --define:nimStrictDelete
 --define:ssl
 --define:threadsafe
