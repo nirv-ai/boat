@@ -51,6 +51,7 @@ proc manifestIsValid*(self: BoatConfig, path: string = ""): bool =
 proc save*(self: BoatConfig, path: string = ""): bool =
   ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
   ## updates captains manifest with stuffWeCached.self.use -> cache location
+  raise tddError
   # should call fileManager.toDisk
   result = true
 
