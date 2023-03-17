@@ -1,0 +1,2 @@
+BoatConfig	boat/private/boatConfigType.html#BoatConfig	boatConfigType: BoatConfig	
+usePath	boat/private/boatConfigType.html#usePath,BoatConfig,string	boatConfigType: usePath(self: BoatConfig; path: string = &quot;&quot;): string	

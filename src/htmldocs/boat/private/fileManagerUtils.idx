@@ -1,0 +1,13 @@
+captainsLog	boat/private/fileManagerUtils.html#captainsLog	FileType.captainsLog	
+localManifest	boat/private/fileManagerUtils.html#localManifest	FileType.localManifest	
+remoteManifest	boat/private/fileManagerUtils.html#remoteManifest	FileType.remoteManifest	
+FileType	boat/private/fileManagerUtils.html#FileType	fileManagerUtils: FileType	
+persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]	
+retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileType](self: T; path: string): BoatConfigKind	
+pathDir	boat/private/fileManagerUtils.html#pathDir,string	fileManagerUtils: pathDir(path: string): string	
+dir	boat/private/fileManagerUtils.html#dir,FileType	fileManagerUtils: dir(self: FileType): string	
+path	boat/private/fileManagerUtils.html#path,FileType,string	fileManagerUtils: path(self: FileType; fname: string): string	
+encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: JsonNode | string](self: T): string	
+FileManagerUtils	boat/private/fileManagerUtils.html#filemanagerutils	 FileManagerUtils	
+TLDR	boat/private/fileManagerUtils.html#filemanagerutils-tldr	  TLDR	
+todos	boat/private/fileManagerUtils.html#filemanagerutils-todos	  todos	

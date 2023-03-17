@@ -15,36 +15,16 @@ import
   boatErrors,
   fileManagerUtils
 
-
-proc dir*(self: FileType): string =
-  ## returns the directory where different FileTypes are persisted
-  result = case self
-    of localManifest, captainsLog: cacheDir
-    else: tempDir
-
-proc path*(self: FileType, fname: string): string =
-  ## computes the filpath for a FileType
-  raise tddError
-  # result = self.dir / hash(fname)
-
-proc encode*[T: JsonNode | string](self: T): string =
-  ## encodes json & strings for saving to disk
-  raise tddError
-  # of JsonNode -> parse to string -> base64
-  # of string -> base64
-
-
 proc toDisk*[T: JsonNode | string | Config](
-  self: FileType,
-  fname: string,
+  ft: FileType,
+  use: string,
   data: T,
-  captainsLog: JsonNode
   ): Future[string] {.async.} =
-    ## persists data to cache or temp dir and returns path
-    ## if file already exists, will overwrite if content is different
-    ## any file saved to cacheDir will be added to the captains log
-    raise tddError
-    # fpath = self.path fname
+    ## persists data to cache or temp dir and returns path or throws if unsuccessful
+    ## if T is json/string, will overwrite file if content is different
+    ## if T is config, will always overwrite
+    let dirName = use.pathDir
+    let fpath = ft.path dirName
     # if json | string
       # encoded = getEncode(data)
       # fpath exists ?
@@ -52,11 +32,15 @@ proc toDisk*[T: JsonNode | string | Config](
           # i dont think we can check if Configs are different
           # ^ because configs are saved via parsecfg.writeConfig
           # ^ so if toDisk is called on BoatConfig.parsed it will always overwrite
-    # persist data logic
-      # self.persist fpath; dont wait, expect error if failure
-      # captains.log.fname = fpath
-      # return fpath
-
+    result = case ft
+      of captainsLog, remoteManifest: raise tddError
+      of localManifest:
+        try:
+          data.writeConfig fpath # throws IOError, OSError
+          fpath
+        except CatchableError:
+          debugEcho repr getCurrentException()
+          raise fileSaveDefect
 
 proc fromDisk*[T](
   self: FileType,

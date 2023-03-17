@@ -1,8 +1,29 @@
+##
+## FileManagerUtils
+## ================
+## low level procs used by FileManager
+
+##[
+## TLDR
+
+todos
+-----
+- rework procs to use
+  - os.expandFilename
+  - os.expandTilde
+  - os.isValidFilename
+  - os.normalizedPath
+  - os.normalizePathEnd
+  - os.sameFileContent
+]##
+
 from ../../../bdd import tddError
 
 import std/[
   asyncdispatch,
+  hashes,
   json,
+  os,
   parsecfg,
 ]
 
@@ -33,5 +54,27 @@ proc retrieve*[T: FileType](self: T, path: string): BoatConfigKind =
     debugEcho repr getCurrentException()
     raise fileLoadDefect
 
+proc pathDir*(path: string): string = path.splitPath.head
+  ## used to sync some/path/manifest.nim.ini and some/path/ to the same hash value
+  # see the TODOS up top
 
-export asyncdispatch, json, parsecfg
+proc dir*(self: FileType): string =
+  ## returns the directory where different FileTypes are persisted
+  result = case self
+    of localManifest, captainsLog: cacheDir
+    else: tempDir
+
+proc path*(self: FileType, fname: string): string =
+  ## computes the filpath for a FileType
+  result = self.dir / $hash(fname)
+
+proc encode*[T: JsonNode | string](self: T): string =
+  ## encodes json & strings for saving to disk
+  raise tddError
+  # of JsonNode -> parse to string -> base64
+  # of string -> base64
+
+export
+  asyncdispatch,
+  json,
+  parsecfg

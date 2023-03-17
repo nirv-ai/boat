@@ -1,0 +1,10 @@
+boatConfigSave	boat/private/boatConstants.html#boatConfigSave	CaptainActions.boatConfigSave	
+boatConfigRemove	boat/private/boatConstants.html#boatConfigRemove	CaptainActions.boatConfigRemove	
+CaptainActions	boat/private/boatConstants.html#CaptainActions	boatConstants: CaptainActions	
+BoatConfigKind	boat/private/boatConstants.html#BoatConfigKind	boatConstants: BoatConfigKind	
+captainsLogLoaded	boat/private/boatConstants.html#captainsLogLoaded	boatConstants: captainsLogLoaded	
+manifestName	boat/private/boatConstants.html#manifestName	boatConstants: manifestName	
+boatDirName	boat/private/boatConstants.html#boatDirName	boatConstants: boatDirName	
+cacheDir	boat/private/boatConstants.html#cacheDir	boatConstants: cacheDir	
+tempDir	boat/private/boatConstants.html#tempDir	boatConstants: tempDir	
+BoatConstants	boat/private/boatConstants.html#boatconstants	 BoatConstants	
