@@ -19,11 +19,10 @@ proc toDisk*[T: JsonNode | string | Config](
   ft: FileType,
   use: string,
   data: T,
-  captain: JsonNode
   ): Future[string] {.async.} =
-    ## persists data to cache or temp dir and returns path
-    ## if file already exists, will overwrite if content is different
-    ## any file saved to cacheDir will be added to the captains log
+    ## persists data to cache or temp dir and returns path or throws if unsuccessful
+    ## if T is json/string, will overwrite file if content is different
+    ## if T is config, will always overwrite
     let dirName = use.pathDir
     let fpath = ft.path dirName
     # if json | string
@@ -33,14 +32,15 @@ proc toDisk*[T: JsonNode | string | Config](
           # i dont think we can check if Configs are different
           # ^ because configs are saved via parsecfg.writeConfig
           # ^ so if toDisk is called on BoatConfig.parsed it will always overwrite
-    # persist data logic
     result = case ft
       of captainsLog, remoteManifest: raise tddError
       of localManifest:
-        data.writeConfig fpath
-        # update captain.using[dirName] = fpath
-        # return fpath to consumer
-        fpath
+        try:
+          data.writeConfig fpath # throws IOError, OSError
+          fpath
+        except CatchableError:
+          debugEcho repr getCurrentException()
+          raise fileSaveDefect
 
 proc fromDisk*[T](
   self: FileType,

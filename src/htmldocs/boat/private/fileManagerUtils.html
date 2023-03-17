@@ -131,6 +131,11 @@ window.addEventListener('DOMContentLoaded', main);
     title="path(self: FileType; fname: string): string">path(self: FileType; fname: string): string</a></li>
 
   </ul>
+  <ul class="simple nested-toc-section">pathDir
+      <li><a class="reference" href="#pathDir%2Cstring"
+    title="pathDir(path: string): string">pathDir(path: string): string</a></li>
+
+  </ul>
   <ul class="simple nested-toc-section">persist
       <li><a class="reference" href="#persist%2CT%2Cstring"
     title="persist[T: FileType](self: T; path: string): Future[void]">persist[T: FileType](self: T; path: string): Future[void]</a></li>
@@ -189,9 +194,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 returns the directory where different FileTypes are persisted
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L38"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L41"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -201,9 +206,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 encodes json &amp; strings for saving to disk
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L48"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L51"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -213,9 +218,21 @@ class="link-seesrc" target="_blank">Source</a>
 
 computes the filpath for a FileType
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L44"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L47"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L44" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L47" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="pathDir,string">
+<dt><pre><span class="Keyword">proc</span> <a href="#pathDir%2Cstring"><span class="Identifier">pathDir</span></a><span class="Other">(</span><span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+used to sync some/path/manifest.nim.ini and some/path/ to the same hash value
+&nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManagerUtils.nim#L38"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManagerUtils.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -253,7 +270,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 05:10:19 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 20:16:23 UTC</small>
       </div>
     </div>
   </div>

@@ -91,6 +91,14 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="boatErrors: boatConfigKindError" href="boat/private/boatErrors.html#boatConfigKindError">boatErrors: boatConfigKindError</a></li>
           </ul></dd>
+<dt><a name="boatConfigRemove" href="#boatConfigRemove"><span>boatConfigRemove:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainActions.boatConfigRemove" href="boat/private/boatConstants.html#boatConfigRemove">CaptainActions.boatConfigRemove</a></li>
+          </ul></dd>
+<dt><a name="boatConfigSave" href="#boatConfigSave"><span>boatConfigSave:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainActions.boatConfigSave" href="boat/private/boatConstants.html#boatConfigSave">CaptainActions.boatConfigSave</a></li>
+          </ul></dd>
 <dt><a name="BoatDefect" href="#BoatDefect"><span>BoatDefect:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatErrors: BoatDefect" href="boat/private/boatErrors.html#BoatDefect">boatErrors: BoatDefect</a></li>
@@ -110,6 +118,10 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="captain" href="#captain"><span>captain:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatConfig: captain" href="boat/private/boatConfig.html#captain">boatConfig: captain</a></li>
+          </ul></dd>
+<dt><a name="CaptainActions" href="#CaptainActions"><span>CaptainActions:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="boatConstants: CaptainActions" href="boat/private/boatConstants.html#CaptainActions">boatConstants: CaptainActions</a></li>
           </ul></dd>
 <dt><a name="captainsLog" href="#captainsLog"><span>captainsLog:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -213,6 +225,10 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="fileManagerUtils: path(self: FileType; fname: string): string" href="boat/private/fileManagerUtils.html#path%2CFileType%2Cstring">fileManagerUtils: path(self: FileType; fname: string): string</a></li>
           </ul></dd>
+<dt><a name="pathDir" href="#pathDir"><span>pathDir:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="fileManagerUtils: pathDir(path: string): string" href="boat/private/fileManagerUtils.html#pathDir%2Cstring">fileManagerUtils: pathDir(path: string): string</a></li>
+          </ul></dd>
 <dt><a name="persist" href="#persist"><span>persist:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]" href="boat/private/fileManagerUtils.html#persist%2CT%2Cstring">fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]</a></li>
@@ -263,9 +279,13 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="toDisk" href="#toDisk"><span>toDisk:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="fileManager: toDisk[T: JsonNode | string | Config](ft: FileType; fname: string; data: T;
-                                      captain: JsonNode): Future[string]" href="boat/private/fileManager.html#toDisk%2CFileType%2Cstring%2CT%2CJsonNode">fileManager: toDisk[T: JsonNode | string | Config](ft: FileType; fname: string; data: T;
-                                      captain: JsonNode): Future[string]</a></li>
+          data-doc-search-tag="fileManager: toDisk[T: JsonNode | string | Config](ft: FileType; use: string; data: T): Future[
+    string]" href="boat/private/fileManager.html#toDisk%2CFileType%2Cstring%2CT">fileManager: toDisk[T: JsonNode | string | Config](ft: FileType; use: string; data: T): Future[
+    string]</a></li>
+          </ul></dd>
+<dt><a name="updateCaptainsLog" href="#updateCaptainsLog"><span>updateCaptainsLog:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="boatConfig: updateCaptainsLog(self: BoatConfig; action: CaptainActions; data: auto): bool" href="boat/private/boatConfig.html#updateCaptainsLog%2CBoatConfig%2CCaptainActions%2Cauto">boatConfig: updateCaptainsLog(self: BoatConfig; action: CaptainActions; data: auto): bool</a></li>
           </ul></dd>
 <dt><a name="usePath" href="#usePath"><span>usePath:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -280,7 +300,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 05:10:19 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 20:16:23 UTC</small>
       </div>
     </div>
   </div>

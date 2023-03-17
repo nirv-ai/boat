@@ -110,6 +110,9 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#BoatConfigKind"
     title="BoatConfigKind = Config | JsonNode">BoatConfigKind</a></li>
+  <li><a class="reference" href="#CaptainActions"
+    title="CaptainActions = enum
+  boatConfigSave, boatConfigRemove">CaptainActions</a></li>
 
   </ul>
 </li>
@@ -171,6 +174,19 @@ class="link-seesrc" target="_blank">Source</a>
 
 a Config generally means a manifest while JsonNode indicates a captainslog
 &nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="CaptainActions">
+<dt><pre><a href="boatConstants.html#CaptainActions"><span class="Identifier">CaptainActions</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">boatConfigSave</span><span class="Other">,</span> <span class="Identifier">boatConfigRemove</span></pre></dt>
+<dd>
+
+
+&nbsp;&nbsp;<a
 href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L13"
 class="link-seesrc" target="_blank">Source</a>
 &nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
@@ -189,9 +205,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 true if we've attempted to load the captainslog from disk
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L18"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -207,9 +223,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 captains manifest and other files that should persist across invocations
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L28"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -220,9 +236,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 temporary directory for temporary things to be stored temporarily
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L32"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -238,9 +254,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 parent directory for all boat assets
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L25"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L28"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -251,9 +267,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 the captains manifest must be named manifest.nim.ini contains / points to other manifests
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L21"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConstants.nim#L24"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConstants.nim#L24" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -267,7 +283,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 05:10:19 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 20:16:23 UTC</small>
       </div>
     </div>
   </div>

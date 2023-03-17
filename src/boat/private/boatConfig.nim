@@ -26,6 +26,8 @@ import
 
 var captain* {.global.} = %* { "using": {} } ## \
   ## captains log is the world
+  # we need an ADR for the captainlog structure
+  # it should scale with increased complexity
 
 proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
   ## parses a local BoatConfig
@@ -48,13 +50,21 @@ proc isValid*(self: BoatConfig, path: string = ""): bool =
       self.use = self.use / manifestName
       self.isValid
 
+proc updateCaptainsLog*(self: BoatConfig, action: CaptainActions, data: auto): bool =
+  ## tracks actions taken to the captains log
+  # we should create an ADR for this to ensure
+  # this fn can scale with increased complexity and scope
+  result = case action
+    of boatConfigSave: true
+    else: raise tddError
+
 proc save*(self: BoatConfig, ft: FileType): bool =
-  ## caches self.parsed to disk and updates captainslog with path
+  ## caches BoatConfig to disk and potentially updates captainslog with path
   result = case ft
     of captainsLog, remoteManifest: raise tddError
     of localManifest:
-      discard toDisk[Config](ft, self.use, self.parsed, captain)
-      true
+      let fpath = waitFor toDisk[Config](ft, self.use, self.parsed)
+      self.updateCaptainsLog boatConfigSave, fpath
 
 proc init*(self: BoatConfig): bool =
   # starts with https?
@@ -66,12 +76,11 @@ proc init*(self: BoatConfig): bool =
     of true: raise tddError
     else:
       try:
-        doAssert self.isValid == true
-        if self.save localManifest: true
-        else: raise tddError
+        if self.isValid and self.save localManifest: true
+        else: raise fileSaveDefect
       except CatchableError:
         debugEcho repr getCurrentException()
-        raise fileLoadError
+        raise fileLoadDefect
 
 proc reload*(self: BoatConfig): bool =
   ## reloads a configuration from captainsLog
@@ -80,8 +89,9 @@ proc reload*(self: BoatConfig): bool =
 proc load*(self: BoatConfig): bool =
   ## (re)load a Configuration
   result =
-    # if self.use in captainsLog ? reload from captainslog
-    if 1 > 2: raise tddError
+    if 1 > 2:
+      # if self.use in captainsLog ? reload from captainslog
+      raise tddError
     else: self.init
 
 proc loadCaptainsLog(): void =

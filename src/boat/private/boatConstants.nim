@@ -10,6 +10,9 @@ from parsecfg import Config
 
 import boatErrors
 
+type CaptainActions* = enum
+  boatConfigSave, boatConfigRemove
+
 type BoatConfigKind* = Config | JsonNode ## \
   ## a Config generally means a manifest
   ## while JsonNode indicates a captainslog

@@ -18,8 +18,8 @@ proc newConfD*[T: BoatConfigKind = Config](
 export boatConfig, boatConstants, fileManagerUtils
 
 when isMainModule:
-  # let confFromFile = newConf()
-  # discard confFromFile.load()
+  let confFromFile = newConf()
+  discard confFromFile.load()
   # debugEcho repr BoatConfig[JsonNode](use: "xyz")
   debugEcho repr newConf()
   debugEcho repr newConfD()
