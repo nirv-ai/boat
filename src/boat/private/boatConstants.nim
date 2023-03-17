@@ -39,3 +39,7 @@ for dir in @[cacheDir, tempDir]:
     raise dirCreateDefect
 
 export json.JsonNode, parsecfg.Config
+
+when isMainModule:
+  debugEcho cacheDir
+  debugEcho tempDir

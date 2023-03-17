@@ -185,7 +185,9 @@ digraph boat {
 "std/asyncdispatch" -> "std/asyncfutures";
 "std/asyncdispatch" -> "std/posix";
 "boat/private/fileManagerUtils" -> "std/asyncdispatch";
+"boat/private/fileManagerUtils" -> "std/hashes";
 "boat/private/fileManagerUtils" -> "std/json";
+"boat/private/fileManagerUtils" -> "std/os";
 "boat/private/fileManagerUtils" -> "std/parsecfg";
 "boat/private/fileManagerUtils" -> "boat/private/boatErrors";
 "boat/private/fileManagerUtils" -> "boat/private/boatConstants";

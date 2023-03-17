@@ -24,7 +24,7 @@ import
   fileManager
 
 
-var captain* {.global.} = %* {} ## \
+var captain* {.global.} = %* { "using": {} } ## \
   ## captains log is the world
 
 proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
@@ -48,11 +48,13 @@ proc isValid*(self: BoatConfig, path: string = ""): bool =
       self.use = self.use / manifestName
       self.isValid
 
-proc save*(self: BoatConfig, path: string = "", ft: FileType): bool =
+proc save*(self: BoatConfig, ft: FileType): bool =
   ## caches self.parsed to disk and updates captainslog with path
-  case ft
-  of captainsLog, remoteManifest: raise tddError
-  of localManifest: result = true
+  result = case ft
+    of captainsLog, remoteManifest: raise tddError
+    of localManifest:
+      discard toDisk[Config](ft, self.use, self.parsed, captain)
+      true
 
 proc init*(self: BoatConfig): bool =
   # starts with https?
@@ -65,7 +67,7 @@ proc init*(self: BoatConfig): bool =
     else:
       try:
         doAssert self.isValid == true
-        if self.save(ft = localManifest): true
+        if self.save localManifest: true
         else: raise tddError
       except CatchableError:
         debugEcho repr getCurrentException()

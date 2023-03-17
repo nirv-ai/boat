@@ -4,3 +4,6 @@ remoteManifest	boat/private/fileManagerUtils.html#remoteManifest	FileType.remote
 FileType	boat/private/fileManagerUtils.html#FileType	fileManagerUtils: FileType	
 persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]	
 retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileType](self: T; path: string): BoatConfigKind	
+dir	boat/private/fileManagerUtils.html#dir,FileType	fileManagerUtils: dir(self: FileType): string	
+path	boat/private/fileManagerUtils.html#path,FileType,string	fileManagerUtils: path(self: FileType; fname: string): string	
+encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: JsonNode | string](self: T): string	

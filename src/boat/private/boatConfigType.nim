@@ -7,7 +7,7 @@ type BoatConfig*[T: BoatConfigKind = Config] = ref object of RootObj
   use*: string ## \
     ## filepath, dir containing a file or remote uri
   parsed*: T ## \
-    ## the parsed config if the config has been parsed
+    ## the parsed config after parsing
 
 proc usePath*(self: BoatConfig, path: string = ""): string =
   if path.len is Positive: path else: self.use

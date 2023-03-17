@@ -108,33 +108,18 @@ window.addEventListener('DOMContentLoaded', main);
 <li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
-      <ul class="simple nested-toc-section">dir
-      <li><a class="reference" href="#dir%2CFileType"
-    title="dir(self: FileType): string">dir(self: FileType): string</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">encode
-      <li><a class="reference" href="#encode%2CT"
-    title="encode[T: JsonNode | string](self: T): string">encode[T: JsonNode | string](self: T): string</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">fromDisk
+      <ul class="simple nested-toc-section">fromDisk
       <li><a class="reference" href="#fromDisk%2CFileType%2Cstring%2CT"
     title="fromDisk[T](self: FileType; fname: string; to: T; errorNotFound = false): Future[
     (string, T)]">fromDisk[T](self: FileType; fname: string; to: T; errorNotFound = false): Future[
     (string, T)]</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">path
-      <li><a class="reference" href="#path%2CFileType%2Cstring"
-    title="path(self: FileType; fname: string): string">path(self: FileType; fname: string): string</a></li>
-
-  </ul>
   <ul class="simple nested-toc-section">toDisk
       <li><a class="reference" href="#toDisk%2CFileType%2Cstring%2CT%2CJsonNode"
-    title="toDisk[T: JsonNode | string | Config](self: FileType; fname: string; data: T;
-                                      captainsLog: JsonNode): Future[string]">toDisk[T: JsonNode | string | Config](self: FileType; fname: string; data: T;
-                                      captainsLog: JsonNode): Future[string]</a></li>
+    title="toDisk[T: JsonNode | string | Config](ft: FileType; fname: string; data: T;
+                                      captain: JsonNode): Future[string]">toDisk[T: JsonNode | string | Config](ft: FileType; fname: string; data: T;
+                                      captain: JsonNode): Future[string]</a></li>
 
   </ul>
 
@@ -169,30 +154,6 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<div id="dir,FileType">
-<dt><pre><span class="Keyword">proc</span> <a href="#dir%2CFileType"><span class="Identifier">dir</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-returns the directory where different FileTypes are persisted
-&nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L19"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
-<div id="encode,T">
-<dt><pre><span class="Keyword">proc</span> <a href="#encode%2CT"><span class="Identifier">encode</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">JsonNode</span> <span class="Operator">|</span> <span class="Identifier">string</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span></pre></dt>
-<dd>
-
-encodes json &amp; strings for saving to disk
-&nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L30"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
 <div id="fromDisk,FileType,string,T">
 <dt><pre><span class="Keyword">proc</span> <a href="#fromDisk%2CFileType%2Cstring%2CT"><span class="Identifier">fromDisk</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">;</span> <span class="Identifier">fname</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">to</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">errorNotFound</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span>
     <span class="Other">(</span><span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">T</span><span class="Other">)</span><span class="Other">]</span></pre></dt>
@@ -200,34 +161,22 @@ class="link-seesrc" target="_blank">Source</a>
 
 load hash(fname) and parse to T returning (fpath, T) throws if errorNotFound is true; else returns empty T
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L66"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L49"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L66" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
-<div id="path,FileType,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#path%2CFileType%2Cstring"><span class="Identifier">path</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">;</span> <span class="Identifier">fname</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-computes the filpath for a FileType
-&nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L25"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
 <div id="toDisk,FileType,string,T,JsonNode">
-<dt><pre><span class="Keyword">proc</span> <a href="#toDisk%2CFileType%2Cstring%2CT%2CJsonNode"><span class="Identifier">toDisk</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">JsonNode</span> <span class="Operator">|</span> <span class="Identifier">string</span> <span class="Operator">|</span> <span class="Identifier">Config</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">;</span> <span class="Identifier">fname</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
-    <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span> <span class="Identifier">captainsLog</span><span class="Other">:</span> <span class="Identifier">JsonNode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#toDisk%2CFileType%2Cstring%2CT%2CJsonNode"><span class="Identifier">toDisk</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">:</span> <span class="Identifier">JsonNode</span> <span class="Operator">|</span> <span class="Identifier">string</span> <span class="Operator">|</span> <span class="Identifier">Config</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">ft</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">;</span> <span class="Identifier">fname</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">T</span><span class="Other">;</span>
+    <span class="Identifier">captain</span><span class="Other">:</span> <span class="Identifier">JsonNode</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Future</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span></pre></dt>
 <dd>
 
 persists data to cache or temp dir and returns path if file already exists, will overwrite if content is different any file saved to cacheDir will be added to the captains log
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L42"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/fileManager.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/fileManager.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -236,7 +185,7 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="19">
 <h1><a class="toc-backref" href="#19">Exports</a></h1>
 <dl class="item">
-<a href="fileManagerUtils.html#persist,T,string"><span class="Identifier">persist</span></a>, <a href="fileManagerUtils.html#retrieve,T,string"><span class="Identifier">retrieve</span></a>, <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a>
+<a href="fileManagerUtils.html#dir,FileType"><span class="Identifier">dir</span></a>, <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a>, <a href="fileManagerUtils.html#encode,T"><span class="Identifier">encode</span></a>, <a href="fileManagerUtils.html#persist,T,string"><span class="Identifier">persist</span></a>, <a href="fileManagerUtils.html#path,FileType,string"><span class="Identifier">path</span></a>, <a href="fileManagerUtils.html#retrieve,T,string"><span class="Identifier">retrieve</span></a>
 </dl></div>
 
   </div>
@@ -246,7 +195,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 04:22:34 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-17 05:10:19 UTC</small>
       </div>
     </div>
   </div>

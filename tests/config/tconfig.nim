@@ -4,6 +4,8 @@ valgrind: "leaks"
 exitcode: 0
 """
 
+import std/os
+
 import ../../bdd
 import ../helpers
 
@@ -30,6 +32,13 @@ block baseCaseLoadFile:
     discard c.load()
     itShould(msg = "not be nil after load()", condition = c.parsed != nil)
     $c.parsed.typeof == "Config"
+  )
+  it should, "save parsed config to disk", () => (
+    let c = newConf()
+    let expected = localManifest.path c.use.pathDir
+    if expected.fileExists: expected.removeFile
+    discard c.load()
+    expected.fileExists
   )
 
 block baseCaseLoadFileFromDir:

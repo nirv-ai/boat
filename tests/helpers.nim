@@ -1,6 +1,6 @@
 import std/[os, parsecfg]
 
-import ../src/boat/private/[boatConfig, boatConstants]
+import ../src/boat/private/[boatConfig, boatConstants, fileManagerUtils]
 
 let defaultManifest = getCurrentDir() / "src/boat/private/captain/manifest.nim.ini"
 
@@ -15,7 +15,7 @@ proc newConfD*[T: BoatConfigKind = Config](
   ): BoatConfig[T] = BoatConfig[T](use: use.splitPath.head)
 
 
-export boatConfig, boatConstants
+export boatConfig, boatConstants, fileManagerUtils
 
 when isMainModule:
   # let confFromFile = newConf()
