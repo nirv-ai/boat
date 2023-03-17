@@ -13,6 +13,7 @@ import boatErrors
 type BoatConfigKind* = Config | JsonNode ## \
   ## a Config generally means a manifest
   ## while JsonNode indicates a captainslog
+  # object variant may be more appropriate: https://nim-lang.org/docs/manual.html#types-object-variants)
 
 var captainsLogLoaded* {.global.} = false ## \
   ## true if we've loaded the captains log from disk into ram
