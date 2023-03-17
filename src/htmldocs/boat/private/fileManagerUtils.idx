@@ -8,3 +8,6 @@ pathDir	boat/private/fileManagerUtils.html#pathDir,string	fileManagerUtils: path
 dir	boat/private/fileManagerUtils.html#dir,FileType	fileManagerUtils: dir(self: FileType): string	
 path	boat/private/fileManagerUtils.html#path,FileType,string	fileManagerUtils: path(self: FileType; fname: string): string	
 encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: JsonNode | string](self: T): string	
+FileManagerUtils	boat/private/fileManagerUtils.html#filemanagerutils	 FileManagerUtils	
+TLDR	boat/private/fileManagerUtils.html#filemanagerutils-tldr	  TLDR	
+todos	boat/private/fileManagerUtils.html#filemanagerutils-todos	  todos	

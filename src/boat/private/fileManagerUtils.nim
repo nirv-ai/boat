@@ -1,3 +1,22 @@
+##
+## FileManagerUtils
+## ================
+## low level procs used by FileManager
+
+##[
+## TLDR
+
+todos
+-----
+- rework procs to use
+  - os.expandFilename
+  - os.expandTilde
+  - os.isValidFilename
+  - os.normalizedPath
+  - os.normalizePathEnd
+  - os.sameFileContent
+]##
+
 from ../../../bdd import tddError
 
 import std/[
@@ -37,6 +56,7 @@ proc retrieve*[T: FileType](self: T, path: string): BoatConfigKind =
 
 proc pathDir*(path: string): string = path.splitPath.head
   ## used to sync some/path/manifest.nim.ini and some/path/ to the same hash value
+  # see the TODOS up top
 
 proc dir*(self: FileType): string =
   ## returns the directory where different FileTypes are persisted

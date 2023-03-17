@@ -28,7 +28,7 @@ const manifestName* = "manifest.nim.ini" ## \
 const boatDirName* = "boat" ## \
   ## parent directory for all boat assets
 
-let cacheDir* = getCacheDir() / boatDirName ## \
+let cacheDir* = boatDirName.getCacheDir() ## \
   ## captains manifest and other files
   ## that should persist across invocations
 
