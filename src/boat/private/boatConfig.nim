@@ -24,16 +24,16 @@ import
   fileManager
 
 
-var captainsLog* {.global.} = %* {} ## \
+var captain* {.global.} = %* {} ## \
   ## captains log is the world
 
-proc parseManifest*(self: BoatConfig, path: string = "", ft: FileType): bool =
-  ## sets self.parsed to the parsed manifest
+proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
+  ## parses a local BoatConfig
   self.parsed = ft.retrieve self.usePath path
   result = true
 
-proc manifestIsValid*(self: BoatConfig, path: string = ""): bool =
-  ## throws if manifest not found, cant be read, or errors during parsing
+proc isValid*(self: BoatConfig, path: string = ""): bool =
+  ## throws if local BoatConfig not found, cant be read, or errors during parsing
   let usePath = self.usePath path
   let pathInfo = usePath.getFileInfo
 
@@ -41,19 +41,18 @@ proc manifestIsValid*(self: BoatConfig, path: string = ""): bool =
     of pcFile, pcLinkToFile:
       if fpUserRead notin pathInfo.permissions: raise filePermissionError
       elif not usePath.endsWith manifestName: raise manifestNameError
-      elif not self.parseManifest(usePath, localManifest): raise configParseError
+      elif not self.parse(usePath, localManifest): raise configParseError
       else: true
     of pcDir, pcLinkToDir:
       # force directories to use their manifest
       self.use = self.use / manifestName
-      self.manifestIsValid
+      self.isValid
 
-proc save*(self: BoatConfig, path: string = ""): bool =
-  ## serialize Self.parsed to disk @ boatConstants.cacheDir / <SELF.ID>.{manifestName}
-  ## updates captains manifest with stuffWeCached.self.use -> cache location
-  raise tddError
-  # should call fileManager.toDisk
-  result = true
+proc save*(self: BoatConfig, path: string = "", ft: FileType): bool =
+  ## caches self.parsed to disk and updates captainslog with path
+  case ft
+  of captainsLog, remoteManifest: raise tddError
+  of localManifest: result = true
 
 proc init*(self: BoatConfig): bool =
   # starts with https?
@@ -61,15 +60,16 @@ proc init*(self: BoatConfig): bool =
       # check FileManagerUtils.retrieve
       # it should contain logic for loading remote manifests
     # throw: urls must point to a manifest.nim.ini
-  case self.use.startsWith "https"
+  result = case self.use.startsWith "https"
     of true: raise tddError
     else:
-      try: doAssert self.manifestIsValid == true
+      try:
+        doAssert self.isValid == true
+        if self.save(ft = localManifest): true
+        else: raise tddError
       except CatchableError:
         debugEcho repr getCurrentException()
         raise fileLoadError
-  if not self.save: raise fileSaveDefect
-  else: result = true
 
 proc reload*(self: BoatConfig): bool =
   ## reloads a configuration from captainsLog
@@ -91,4 +91,4 @@ proc loadCaptainsLog(): void =
 # always load the captainsLog into ram
 if not captainsLogLoaded: loadCaptainsLog()
 
-export boatConfigType
+export boatConfigType, boatConstants

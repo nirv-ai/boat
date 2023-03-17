@@ -1,0 +1,10 @@
+captain	boat/private/boatConfig.html#captain	boatConfig: captain	
+parse	boat/private/boatConfig.html#parse,BoatConfig,string,FileType	boatConfig: parse(self: BoatConfig; path: string = &quot;&quot;; ft: FileType): bool	
+isValid	boat/private/boatConfig.html#isValid,BoatConfig,string	boatConfig: isValid(self: BoatConfig; path: string = &quot;&quot;): bool	
+save	boat/private/boatConfig.html#save,BoatConfig,string,FileType	boatConfig: save(self: BoatConfig; path: string = &quot;&quot;; ft: FileType): bool	
+init	boat/private/boatConfig.html#init,BoatConfig	boatConfig: init(self: BoatConfig): bool	
+reload	boat/private/boatConfig.html#reload,BoatConfig	boatConfig: reload(self: BoatConfig): bool	
+load	boat/private/boatConfig.html#load,BoatConfig	boatConfig: load(self: BoatConfig): bool	
+loadCaptainsLog	boat/private/boatConfig.html#loadCaptainsLog	boatConfig: loadCaptainsLog(): void	
+Config	boat/private/boatConfig.html#config	 Config	
+TLDR	boat/private/boatConfig.html#config-tldr	  TLDR	

@@ -1,0 +1,6 @@
+dir	boat/private/fileManager.html#dir,FileType	fileManager: dir(self: FileType): string	
+path	boat/private/fileManager.html#path,FileType,string	fileManager: path(self: FileType; fname: string): string	
+encode	boat/private/fileManager.html#encode,T	fileManager: encode[T: JsonNode | string](self: T): string	
+toDisk	boat/private/fileManager.html#toDisk,FileType,string,T,JsonNode	fileManager: toDisk[T: JsonNode | string | Config](self: FileType; fname: string; data: T;\n                                      captainsLog: JsonNode): Future[string]	
+fromDisk	boat/private/fileManager.html#fromDisk,FileType,string,T	fileManager: fromDisk[T](self: FileType; fname: string; to: T; errorNotFound = false): Future[\n    (string, T)]	
+FileManager	boat/private/fileManager.html#filemanager	 FileManager	

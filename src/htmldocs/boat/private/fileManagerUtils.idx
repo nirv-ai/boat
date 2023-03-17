@@ -1,0 +1,6 @@
+captainsLog	boat/private/fileManagerUtils.html#captainsLog	FileType.captainsLog	
+localManifest	boat/private/fileManagerUtils.html#localManifest	FileType.localManifest	
+remoteManifest	boat/private/fileManagerUtils.html#remoteManifest	FileType.remoteManifest	
+FileType	boat/private/fileManagerUtils.html#FileType	fileManagerUtils: FileType	
+persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]	
+retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileType](self: T; path: string): BoatConfigKind	
