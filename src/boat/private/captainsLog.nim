@@ -3,21 +3,23 @@
 ## ===========
 ## a boat's runtime manifest; internally managed
 
-import std/json
+import captainsLogUtils
 
-import boatConstants
-
-var captains* {.global.} = %* {
-    "captain": {},
-    "cmd": {},
-    "history": []
-  } ## captains log is the world
-
-proc loadCaptainsLog(): void =
+proc initCaptainsLog(): Future[void] {.async.} =
   ## loads the previous or initializes a new captains log
-  captainsLogLoaded = true
+  # this should really call BoatConfig.init
+  # BoatConfig[Json].parsed = captainsLogUtils.captainsLog
+  # ^ dont parse to a nimtype, we want to enable consumers to add arbitrary things to it
+
+  if captainsLog["state"].getInt < 2: captainsLog["state"] = %* Initializing.ord
+  else: return
   # try to retrieve the prev captainslog from cachDir
   # else initialize an empty captainslog
+  # set true if successful, else throw defect
+  captainsLog["state"] = %* Ready.ord
 
-# always load the captainsLog into ram
-if not captainsLogLoaded: loadCaptainsLog()
+asyncCheck initCaptainsLog()
+
+# when isMainModule:
+#   debugEcho captainsLog["state"]
+  # debugEcho CaptainState(captainsLog["state"].getInt)

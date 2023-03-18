@@ -19,8 +19,6 @@ type BoatConfigKind* = Config | JsonNode ## \
   ## while JsonNode indicates a captainslog
   # object variant may be more appropriate: https://nim-lang.org/docs/manual.html#types-object-variants)
 
-var captainsLogLoaded* {.global.} = false ## \
-  ## true if we've attempted to load the captainslog from disk
 
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini

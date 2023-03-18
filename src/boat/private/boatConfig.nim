@@ -21,8 +21,9 @@ import
   boatConfigType,
   boatConstants,
   boatErrors,
-  captainsLog,
+  captainsLogUtils,
   fileManager
+
 
 proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
   ## parses a local BoatConfig

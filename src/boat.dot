@@ -196,12 +196,13 @@ digraph boat {
 "boat/private/fileManager" -> "boat/private/fileManagerUtils";
 "boat/private/boatConfigType" -> "boat/private/boatConstants";
 "boat/private/boatConfigType" -> "boat/private/fileManager";
-"boat/private/captainsLog" -> "std/json";
-"boat/private/captainsLog" -> "boat/private/boatConstants";
+"boat/private/captainsLogUtils" -> "std/asyncdispatch";
+"boat/private/captainsLogUtils" -> "std/json";
+"boat/private/captainsLogUtils" -> "std/os";
 "boat/private/boatConfig" -> "boat/private/boatConfigType";
 "boat/private/boatConfig" -> "boat/private/boatConstants";
 "boat/private/boatConfig" -> "boat/private/boatErrors";
-"boat/private/boatConfig" -> "boat/private/captainsLog";
+"boat/private/boatConfig" -> "boat/private/captainsLogUtils";
 "boat/private/boatConfig" -> "boat/private/fileManager";
 "boat" -> "boat/private/boatConfig";
 }

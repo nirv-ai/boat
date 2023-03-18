@@ -2,7 +2,6 @@ BoatConfigRm	boat/private/boatConstants.html#BoatConfigRm	Action.BoatConfigRm
 BoatConfigSave	boat/private/boatConstants.html#BoatConfigSave	Action.BoatConfigSave	
 Action	boat/private/boatConstants.html#Action	boatConstants: Action	
 BoatConfigKind	boat/private/boatConstants.html#BoatConfigKind	boatConstants: BoatConfigKind	
-captainsLogLoaded	boat/private/boatConstants.html#captainsLogLoaded	boatConstants: captainsLogLoaded	
 manifestName	boat/private/boatConstants.html#manifestName	boatConstants: manifestName	
 boatDirName	boat/private/boatConstants.html#boatDirName	boatConstants: boatDirName	
 cacheDir	boat/private/boatConstants.html#cacheDir	boatConstants: cacheDir	

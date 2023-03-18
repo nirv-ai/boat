@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded', main);
 <div class="document" id="documentId">
   <div class="container">
     <h1 class="title">Index</h1>
-    Modules: <a href="_._/bdd.html">../bdd</a>, <a href="boat.html">boat</a>, <a href="boat/private/boatConfig.html">boat/private/boatConfig</a>, <a href="boat/private/boatConfigType.html">boat/private/boatConfigType</a>, <a href="boat/private/boatConstants.html">boat/private/boatConstants</a>, <a href="boat/private/boatErrors.html">boat/private/boatErrors</a>, <a href="boat/private/captainsLog.html">boat/private/captainsLog</a>, <a href="boat/private/fileManager.html">boat/private/fileManager</a>, <a href="boat/private/fileManagerUtils.html">boat/private/fileManagerUtils</a>.<br/><p /><h2>API symbols</h2>
+    Modules: <a href="_._/bdd.html">../bdd</a>, <a href="boat.html">boat</a>, <a href="boat/private/boatConfig.html">boat/private/boatConfig</a>, <a href="boat/private/boatConfigType.html">boat/private/boatConfigType</a>, <a href="boat/private/boatConstants.html">boat/private/boatConstants</a>, <a href="boat/private/boatErrors.html">boat/private/boatErrors</a>, <a href="boat/private/captainsLogUtils.html">boat/private/captainsLogUtils</a>, <a href="boat/private/fileManager.html">boat/private/fileManager</a>, <a href="boat/private/fileManagerUtils.html">boat/private/fileManagerUtils</a>.<br/><p /><h2>API symbols</h2>
 <dl><dt><a name="Action" href="#Action"><span>Action:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatConstants: Action" href="boat/private/boatConstants.html#Action">boatConstants: Action</a></li>
@@ -115,21 +115,35 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="boatErrors: BoatError" href="boat/private/boatErrors.html#BoatError">boatErrors: BoatError</a></li>
           </ul></dd>
+<dt><a name="Busy" href="#Busy"><span>Busy:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainState.Busy" href="boat/private/captainsLogUtils.html#Busy">CaptainState.Busy</a></li>
+          </ul></dd>
 <dt><a name="cacheDir" href="#cacheDir"><span>cacheDir:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatConstants: cacheDir" href="boat/private/boatConstants.html#cacheDir">boatConstants: cacheDir</a></li>
           </ul></dd>
-<dt><a name="captains" href="#captains"><span>captains:</span></a></dt><dd><ul class="simple">
+<dt><a name="captainReady" href="#captainReady"><span>captainReady:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="captainsLog: captains" href="boat/private/captainsLog.html#captains">captainsLog: captains</a></li>
+          data-doc-search-tag="captainsLogUtils: captainReady(): Future[void]" href="boat/private/captainsLogUtils.html#captainReady">captainsLogUtils: captainReady(): Future[void]</a></li>
+          </ul></dd>
+<dt><a name="captainsLog" href="#captainsLog"><span>captainsLog:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="captainsLogUtils: captainsLog" href="boat/private/captainsLogUtils.html#captainsLog">captainsLogUtils: captainsLog</a></li>
           </ul></dd>
 <dt><a name="CaptainsLog" href="#CaptainsLog"><span>CaptainsLog:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="FileType.CaptainsLog" href="boat/private/fileManagerUtils.html#CaptainsLog">FileType.CaptainsLog</a></li>
           </ul></dd>
-<dt><a name="captainsLogLoaded" href="#captainsLogLoaded"><span>captainsLogLoaded:</span></a></dt><dd><ul class="simple">
+<dt><a name="CaptainState" href="#CaptainState"><span>CaptainState:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="boatConstants: captainsLogLoaded" href="boat/private/boatConstants.html#captainsLogLoaded">boatConstants: captainsLogLoaded</a></li>
+          data-doc-search-tag="captainsLogUtils: CaptainState" href="boat/private/captainsLogUtils.html#CaptainState">captainsLogUtils: CaptainState</a></li>
+          </ul></dd>
+<dt><a name="captainState" href="#captainState"><span>captainState:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="captainsLogUtils: captainState(self: JsonNode = captainsLog): CaptainState" href="boat/private/captainsLogUtils.html#captainState%2CJsonNode">captainsLogUtils: captainState(self: JsonNode = captainsLog): CaptainState</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="captainsLogUtils: captainState(self: JsonNode = captainsLog; to: CaptainState): void" href="boat/private/captainsLogUtils.html#captainState%2CJsonNode%2CCaptainState">captainsLogUtils: captainState(self: JsonNode = captainsLog; to: CaptainState): void</a></li>
           </ul></dd>
 <dt><a name="configParseError" href="#configParseError"><span>configParseError:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -185,6 +199,14 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="boatConfig: init(self: BoatConfig): bool" href="boat/private/boatConfig.html#init%2CBoatConfig">boatConfig: init(self: BoatConfig): bool</a></li>
           </ul></dd>
+<dt><a name="InitializedFalse" href="#InitializedFalse"><span>InitializedFalse:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainState.InitializedFalse" href="boat/private/captainsLogUtils.html#InitializedFalse">CaptainState.InitializedFalse</a></li>
+          </ul></dd>
+<dt><a name="Initializing" href="#Initializing"><span>Initializing:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainState.Initializing" href="boat/private/captainsLogUtils.html#Initializing">CaptainState.Initializing</a></li>
+          </ul></dd>
 <dt><a name="isValid" href="#isValid"><span>isValid:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatConfig: isValid(self: BoatConfig; path: string = &quot;&quot;): bool" href="boat/private/boatConfig.html#isValid%2CBoatConfig%2Cstring">boatConfig: isValid(self: BoatConfig; path: string = &quot;&quot;): bool</a></li>
@@ -200,10 +222,6 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="load" href="#load"><span>load:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="boatConfig: load(self: BoatConfig): bool" href="boat/private/boatConfig.html#load%2CBoatConfig">boatConfig: load(self: BoatConfig): bool</a></li>
-          </ul></dd>
-<dt><a name="loadCaptainsLog" href="#loadCaptainsLog"><span>loadCaptainsLog:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="captainsLog: loadCaptainsLog(): void" href="boat/private/captainsLog.html#loadCaptainsLog">captainsLog: loadCaptainsLog(): void</a></li>
           </ul></dd>
 <dt><a name="LocalManifest" href="#LocalManifest"><span>LocalManifest:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -236,6 +254,10 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="persist" href="#persist"><span>persist:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]" href="boat/private/fileManagerUtils.html#persist%2CT%2Cstring">fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]</a></li>
+          </ul></dd>
+<dt><a name="Ready" href="#Ready"><span>Ready:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="CaptainState.Ready" href="boat/private/captainsLogUtils.html#Ready">CaptainState.Ready</a></li>
           </ul></dd>
 <dt><a name="reload" href="#reload"><span>reload:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -300,7 +322,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-18 04:34:45 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-18 06:26:15 UTC</small>
       </div>
     </div>
   </div>

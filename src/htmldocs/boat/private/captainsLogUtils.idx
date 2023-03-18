@@ -1,0 +1,9 @@
+InitializedFalse	boat/private/captainsLogUtils.html#InitializedFalse	CaptainState.InitializedFalse	
+Initializing	boat/private/captainsLogUtils.html#Initializing	CaptainState.Initializing	
+Ready	boat/private/captainsLogUtils.html#Ready	CaptainState.Ready	
+Busy	boat/private/captainsLogUtils.html#Busy	CaptainState.Busy	
+CaptainState	boat/private/captainsLogUtils.html#CaptainState	captainsLogUtils: CaptainState	
+captainsLog	boat/private/captainsLogUtils.html#captainsLog	captainsLogUtils: captainsLog	
+captainState	boat/private/captainsLogUtils.html#captainState,JsonNode	captainsLogUtils: captainState(self: JsonNode = captainsLog): CaptainState	
+captainState	boat/private/captainsLogUtils.html#captainState,JsonNode,CaptainState	captainsLogUtils: captainState(self: JsonNode = captainsLog; to: CaptainState): void	
+captainReady	boat/private/captainsLogUtils.html#captainReady	captainsLogUtils: captainReady(): Future[void]	
