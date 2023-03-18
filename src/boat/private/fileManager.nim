@@ -45,7 +45,7 @@ proc toDisk*[T: JsonNode | string | Config](
 proc fromDisk*[T](
   self: FileType,
   fname: string,
-  to: T,
+  to: T, # shouldnt be necessary, we know what it is based on filetype
   errorNotFound = false
   ): Future[(string, T)] {.async.} =
     ## load hash(fname) and parse to T returning (fpath, T)
