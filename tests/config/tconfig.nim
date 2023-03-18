@@ -35,7 +35,7 @@ block baseCaseLoadFile:
   )
   it should, "save parsed config to disk", () => (
     let c = newConf()
-    let expected = localManifest.path c.use.pathDir
+    let expected = LocalManifest.path c.use.pathDir
     if expected.fileExists: expected.removeFile
     discard c.load()
     expected.fileExists

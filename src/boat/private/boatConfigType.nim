@@ -1,6 +1,8 @@
 import std/[parsecfg, json]
 
-import fileManager, boatConstants
+import
+  boatConstants,
+  fileManager
 
 type BoatConfig*[T: BoatConfigKind = Config] = ref object of RootObj
   ## base type for all boat configs

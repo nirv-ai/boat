@@ -11,7 +11,8 @@ from parsecfg import Config
 import boatErrors
 
 type Action* = enum
-  boatConfigSave, boatConfigRemove
+  BoatConfigRm,
+  BoatConfigSave,
 
 type BoatConfigKind* = Config | JsonNode ## \
   ## a Config generally means a manifest

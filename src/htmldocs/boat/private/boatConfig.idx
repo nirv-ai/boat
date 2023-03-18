@@ -1,11 +1,9 @@
-captain	boat/private/boatConfig.html#captain	boatConfig: captain	
 parse	boat/private/boatConfig.html#parse,BoatConfig,string,FileType	boatConfig: parse(self: BoatConfig; path: string = &quot;&quot;; ft: FileType): bool	
 isValid	boat/private/boatConfig.html#isValid,BoatConfig,string	boatConfig: isValid(self: BoatConfig; path: string = &quot;&quot;): bool	
-updateCaptainsLog	boat/private/boatConfig.html#updateCaptainsLog,BoatConfig,CaptainActions,auto	boatConfig: updateCaptainsLog(self: BoatConfig; action: CaptainActions; data: auto): bool	
+logAction	boat/private/boatConfig.html#logAction,BoatConfig,Action,auto	boatConfig: logAction(self: BoatConfig; action: Action; data: auto): bool	
 save	boat/private/boatConfig.html#save,BoatConfig,FileType	boatConfig: save(self: BoatConfig; ft: FileType): bool	
 init	boat/private/boatConfig.html#init,BoatConfig	boatConfig: init(self: BoatConfig): bool	
 reload	boat/private/boatConfig.html#reload,BoatConfig	boatConfig: reload(self: BoatConfig): bool	
 load	boat/private/boatConfig.html#load,BoatConfig	boatConfig: load(self: BoatConfig): bool	
-loadCaptainsLog	boat/private/boatConfig.html#loadCaptainsLog	boatConfig: loadCaptainsLog(): void	
 Config	boat/private/boatConfig.html#config	 Config	
 TLDR	boat/private/boatConfig.html#config-tldr	  TLDR	
