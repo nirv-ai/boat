@@ -14,12 +14,6 @@ type Action* = enum
   BoatConfigRm,
   BoatConfigSave,
 
-type BoatConfigKind* = Config | JsonNode ## \
-  ## a Config generally means a manifest
-  ## while JsonNode indicates a captainslog
-  # object variant may be more appropriate: https://nim-lang.org/docs/manual.html#types-object-variants)
-
-
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini
   ## contains / points to other manifests
