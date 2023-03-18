@@ -30,9 +30,9 @@ import std/[
 import boatErrors, boatConstants
 
 type FileType* = enum
-  captainsLog,
-  localManifest,
-  remoteManifest,
+  CaptainsLog,
+  LocalManifest,
+  RemoteManifest,
 
 proc persist*[T: FileType](self: T, path: string): Future[void] {.async.} =
   ## persists a FileType to path
@@ -47,9 +47,9 @@ proc retrieve*[T: FileType](self: T, path: string): BoatConfigKind =
   ## retrieves a FileType from path and parses to BoatConfigKind
   try:
     result = case self
-      of captainsLog: raise tddError # parse to json
-      of localManifest: loadConfig path
-      of remoteManifest: raise tddError # download, then loadConfig path
+      of CaptainsLog: raise tddError # parse to json
+      of LocalManifest: loadConfig path
+      of RemoteManifest: raise tddError # download, then loadConfig path
   except CatchableError:
     debugEcho repr getCurrentException()
     raise fileLoadDefect
@@ -61,7 +61,7 @@ proc pathDir*(path: string): string = path.splitPath.head
 proc dir*(self: FileType): string =
   ## returns the directory where different FileTypes are persisted
   result = case self
-    of localManifest, captainsLog: cacheDir
+    of LocalManifest, CaptainsLog: cacheDir
     else: tempDir
 
 proc path*(self: FileType, fname: string): string =

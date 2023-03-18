@@ -89,14 +89,16 @@ digraph boat {
 "boat/private/boatConfig" -> "std/json";
 "boat/private/boatConfig" -> "std/os";
 "boat/private/boatConfig" -> "std/strutils";
-"boat/private/boatConstants" -> "std/os";
-"boat/private/boatConstants" -> "std/json";
 "std/parsecfg" -> "std/strutils";
 "std/parsecfg" -> "std/lexbase";
 "std/parsecfg" -> "std/streams";
 "std/parsecfg" -> "std/tables";
 "std/parsecfg" -> "std/private/decode_helpers";
 "std/parsecfg" -> "std/private/since";
+"boat/private/boatConfigType" -> "std/parsecfg";
+"boat/private/boatConfigType" -> "std/json";
+"boat/private/boatConstants" -> "std/os";
+"boat/private/boatConstants" -> "std/json";
 "boat/private/boatConstants" -> "std/parsecfg";
 "std/strformat" -> "std/macros";
 "std/strformat" -> "std/parseutils";
@@ -104,8 +106,6 @@ digraph boat {
 "std/strformat" -> "std/strutils";
 "boat/private/boatErrors" -> "std/strformat";
 "boat/private/boatConstants" -> "boat/private/boatErrors";
-"boat/private/boatConfigType" -> "std/parsecfg";
-"boat/private/boatConfigType" -> "std/json";
 "boat/private/fileManager" -> "../bdd";
 "boat/private/fileManagerUtils" -> "../bdd";
 "std/heapqueue" -> "std/private/since";
@@ -194,11 +194,15 @@ digraph boat {
 "boat/private/fileManager" -> "boat/private/boatConstants";
 "boat/private/fileManager" -> "boat/private/boatErrors";
 "boat/private/fileManager" -> "boat/private/fileManagerUtils";
-"boat/private/boatConfigType" -> "boat/private/fileManager";
 "boat/private/boatConfigType" -> "boat/private/boatConstants";
+"boat/private/boatConfigType" -> "boat/private/fileManager";
+"boat/private/captainsLogUtils" -> "std/asyncdispatch";
+"boat/private/captainsLogUtils" -> "std/json";
+"boat/private/captainsLogUtils" -> "std/os";
+"boat/private/boatConfig" -> "boat/private/boatConfigType";
 "boat/private/boatConfig" -> "boat/private/boatConstants";
 "boat/private/boatConfig" -> "boat/private/boatErrors";
-"boat/private/boatConfig" -> "boat/private/boatConfigType";
+"boat/private/boatConfig" -> "boat/private/captainsLogUtils";
 "boat/private/boatConfig" -> "boat/private/fileManager";
 "boat" -> "boat/private/boatConfig";
 }

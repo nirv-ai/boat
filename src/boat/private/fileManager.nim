@@ -33,8 +33,8 @@ proc toDisk*[T: JsonNode | string | Config](
           # ^ because configs are saved via parsecfg.writeConfig
           # ^ so if toDisk is called on BoatConfig.parsed it will always overwrite
     result = case ft
-      of captainsLog, remoteManifest: raise tddError
-      of localManifest:
+      of CaptainsLog, RemoteManifest: raise tddError
+      of LocalManifest:
         try:
           data.writeConfig fpath # throws IOError, OSError
           fpath

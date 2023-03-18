@@ -18,16 +18,12 @@ import std/[
 ]
 
 import
+  boatConfigType,
   boatConstants,
   boatErrors,
-  boatConfigType,
+  captainsLogUtils,
   fileManager
 
-
-var captain* {.global.} = %* { "using": {} } ## \
-  ## captains log is the world
-  # we need an ADR for the captainlog structure
-  # it should scale with increased complexity
 
 proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
   ## parses a local BoatConfig
@@ -43,28 +39,26 @@ proc isValid*(self: BoatConfig, path: string = ""): bool =
     of pcFile, pcLinkToFile:
       if fpUserRead notin pathInfo.permissions: raise filePermissionError
       elif not usePath.endsWith manifestName: raise manifestNameError
-      elif not self.parse(usePath, localManifest): raise configParseError
+      elif not self.parse(usePath, LocalManifest): raise configParseError
       else: true
     of pcDir, pcLinkToDir:
       # force directories to use their manifest
       self.use = self.use / manifestName
       self.isValid
 
-proc updateCaptainsLog*(self: BoatConfig, action: CaptainActions, data: auto): bool =
+proc logAction*(self: BoatConfig, action: Action, data: auto): bool =
   ## tracks actions taken to the captains log
-  # we should create an ADR for this to ensure
-  # this fn can scale with increased complexity and scope
   result = case action
-    of boatConfigSave: true
+    of BoatConfigSave: true
     else: raise tddError
 
 proc save*(self: BoatConfig, ft: FileType): bool =
-  ## caches BoatConfig to disk and potentially updates captainslog with path
+  ## caches BoatConfig to disk and potentially updates CaptainsLog with path
   result = case ft
-    of captainsLog, remoteManifest: raise tddError
-    of localManifest:
+    of CaptainsLog, RemoteManifest: raise tddError
+    of LocalManifest:
       let fpath = waitFor toDisk[Config](ft, self.use, self.parsed)
-      self.updateCaptainsLog boatConfigSave, fpath
+      self.logAction BoatConfigSave, fpath
 
 proc init*(self: BoatConfig): bool =
   # starts with https?
@@ -76,31 +70,23 @@ proc init*(self: BoatConfig): bool =
     of true: raise tddError
     else:
       try:
-        if self.isValid and self.save localManifest: true
+        if self.isValid and self.save LocalManifest: true
         else: raise fileSaveDefect
       except CatchableError:
         debugEcho repr getCurrentException()
         raise fileLoadDefect
 
 proc reload*(self: BoatConfig): bool =
-  ## reloads a configuration from captainsLog
+  ## reloads a configuration from CaptainsLog
   raise tddError
 
 proc load*(self: BoatConfig): bool =
   ## (re)load a Configuration
   result =
     if 1 > 2:
-      # if self.use in captainsLog ? reload from captainslog
+      # if self.use in CaptainsLog ? reload from CaptainsLog
       raise tddError
     else: self.init
 
-proc loadCaptainsLog(): void =
-  ## loads the previous or initializes a new captains log
-  captainsLogLoaded = true
-  # try to retrieve the prev captainslog from cachDir
-  # else initialize an empty captainslog
-
-# always load the captainsLog into ram
-if not captainsLogLoaded: loadCaptainsLog()
 
 export boatConfigType, boatConstants
