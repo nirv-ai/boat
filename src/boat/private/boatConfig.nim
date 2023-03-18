@@ -26,8 +26,6 @@ import
 
 var captain* {.global.} = %* { "using": {} } ## \
   ## captains log is the world
-  # we need an ADR for the captainlog structure
-  # it should scale with increased complexity
 
 proc parse*(self: BoatConfig, path: string = "", ft: FileType): bool =
   ## parses a local BoatConfig
@@ -50,7 +48,7 @@ proc isValid*(self: BoatConfig, path: string = ""): bool =
       self.use = self.use / manifestName
       self.isValid
 
-proc updateCaptainsLog*(self: BoatConfig, action: CaptainActions, data: auto): bool =
+proc logAction*(self: BoatConfig, action: Action, data: auto): bool =
   ## tracks actions taken to the captains log
   # we should create an ADR for this to ensure
   # this fn can scale with increased complexity and scope
@@ -64,7 +62,7 @@ proc save*(self: BoatConfig, ft: FileType): bool =
     of captainsLog, remoteManifest: raise tddError
     of localManifest:
       let fpath = waitFor toDisk[Config](ft, self.use, self.parsed)
-      self.updateCaptainsLog boatConfigSave, fpath
+      self.logAction boatConfigSave, fpath
 
 proc init*(self: BoatConfig): bool =
   # starts with https?

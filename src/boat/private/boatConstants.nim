@@ -10,7 +10,7 @@ from parsecfg import Config
 
 import boatErrors
 
-type CaptainActions* = enum
+type Action* = enum
   boatConfigSave, boatConfigRemove
 
 type BoatConfigKind* = Config | JsonNode ## \
