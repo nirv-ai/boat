@@ -29,12 +29,11 @@ import std/[
 
 import boatErrors, boatConstants
 
-type FileType* = enum
-  CaptainsLog,
-  LocalManifest,
-  RemoteManifest,
 
-proc persist*[T: FileType](self: T, path: string): Future[void] {.async.} =
+type FileTypes* = Config | JsonNode | string
+type Encodable* = JsonNode | string
+
+proc persist*[T: FileTypes](self: T, path: string): Future[void] {.async.} =
   ## persists a FileType to path
   raise tddError
   # lock
@@ -43,36 +42,36 @@ proc persist*[T: FileType](self: T, path: string): Future[void] {.async.} =
   # unlock
   # throw if any errors occur
 
-proc retrieve*[T: FileType](self: T, path: string): BoatConfigKind =
-  ## retrieves a FileType from path and parses to BoatConfigKind
+proc retrieve*[T: FileTypes](self: T, path: string): T =
+  ## retrieves data from path and parses to T
   try:
-    result = case self
-      of CaptainsLog: raise tddError # parse to json
-      of LocalManifest: loadConfig path
-      of RemoteManifest: raise tddError # download, then loadConfig path
+    result =
+      if self is Config: loadConfig path
+      else: raise tddError
   except CatchableError:
     debugEcho repr getCurrentException()
     raise fileLoadDefect
 
 proc pathDir*(path: string): string = path.splitPath.head
   ## used to sync some/path/manifest.nim.ini and some/path/ to the same hash value
-  # see the TODOS up top
+  # see the TODOS up top, this will fail on some/path without a trailing /
 
-proc dir*(self: FileType): string =
-  ## returns the directory where different FileTypes are persisted
-  result = case self
-    of LocalManifest, CaptainsLog: cacheDir
-    else: tempDir
+proc dir*(useCache: bool = true): string =
+  ## returns the cache / temp directory path
+  result = if useCache: cacheDir else: tempDir
 
-proc path*(self: FileType, fname: string): string =
-  ## computes the filpath for a FileType
-  result = self.dir / $hash(fname)
 
-proc encode*[T: JsonNode | string](self: T): string =
+proc path*(fname: string, useCache: bool = true): string =
+  ## computes a filepath
+  result = useCache.dir  / $hash(fname)
+
+proc encode*[T: Encodable](self: T): string =
   ## encodes json & strings for saving to disk
   raise tddError
   # of JsonNode -> parse to string -> base64
   # of string -> base64
+
+proc decode*[T: Encodable](self: T): T = raise tddError
 
 export
   asyncdispatch,

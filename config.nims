@@ -25,7 +25,7 @@ case getEnv "ENV":
   of "DEV":
     --assertions:on
     --checks:on
-    --colors:on
+    # --colors:on # breaks vscode runner?
     --debuginfo:on
     --declaredLocs:on
     --errorMax:0

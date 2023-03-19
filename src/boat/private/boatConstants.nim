@@ -5,14 +5,7 @@
 
 import std/os
 
-from json import JsonNode
-from parsecfg import Config
-
 import boatErrors
-
-type Action* = enum
-  BoatConfigRm,
-  BoatConfigSave,
 
 const manifestName* = "manifest.nim.ini" ## \
   ## the captains manifest must be named manifest.nim.ini
@@ -34,7 +27,6 @@ for dir in @[cacheDir, tempDir]:
     debugEcho repr getCurrentException()
     raise dirCreateDefect
 
-export json.JsonNode, parsecfg.Config
 
 when isMainModule:
   debugEcho cacheDir

@@ -53,7 +53,7 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
       of shouldRaise, shouldNotRaise:
         var didRaise = false
         try: discard condition()
-        except CatchableError: didRaise = true
+        except: didRaise = true
         finally:
           if what.ord == shouldRaise.ord: itShould msg, caseName, didRaise
           else: itShouldNot msg, caseName, didRaise

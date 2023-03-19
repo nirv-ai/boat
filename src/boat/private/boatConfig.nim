@@ -1,27 +1,57 @@
 ##
 ## BoatConfig
 ## ==========
-## boat configuration variants
+## extendable interface for creating, parsing and saving boat configs
 
-import std/[parsecfg, json]
+from ../../../bdd import tddError
 
-type BoatConfigKind* = enum
-  CaptainsLog,
-  Gunner,
-  Manifest,
-  Vessel
+from parsecfg import Config
+from json import JsonNode
 
-type BoatConfig*[T: Config | JsonNode] = ref object of RootObj
+from captainsLogUtils import Action, LogData
+
+type BoatConfig* = ref object of RootObj
   ## base type for all boat configs
   use*: string ## \
-    ## filepath, dir containing a file or remote uri
-  case kind: BoatConfigKind
-    of Manifest: manifest: Config
-    of CaptainsLog: log: JsonNode
-    of Gunner: gunner: T
-    of Vessel: vessel: T
+    ## file / dir / remote uri pointing to a manifest.nim.ini
+
+proc usePath*(self: BoatConfig, path: string = ""): string =
+  ## returns path if not empty, else self.use
+  ## used whenever BoatConfig.use doesnt point to the effective path
+  if path.len > Natural.low: path else: self.use
+
+method init*(
+  self: BoatConfig
+  ): bool {.base.} = raise tddError
+
+method isValid*(
+  self: BoatConfig
+  ): bool {.base.} = raise tddError
+
+method load*(
+  self: BoatConfig
+  ): bool {.base.} = raise tddError
 
 
+method parse*(
+  self: BoatConfig,
+  path: string = ""
+  ): bool {.base.} = raise tddError
+
+method reload*(
+  self: BoatConfig
+  ): bool {.base.} = raise tddError
+
+method save*(
+  self: BoatConfig
+  ): bool {.base.} = raise tddError
+
+
+export
+  captainsLogUtils.LogData,
+  json.JsonNode,
+  parsecfg.Config
 
 when isMainModule:
-  debugEcho repr BoatConfig[Config](kind: Manifest, use: "x")
+  debugEcho repr BoatConfig(use: "xyz")
+  debugEcho repr BoatConfig(use: "xyz")

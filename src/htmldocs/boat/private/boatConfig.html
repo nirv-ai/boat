@@ -98,50 +98,65 @@ window.addEventListener('DOMContentLoaded', main);
     </select>
   </div>
   <ul class="simple simple-toc" id="toc-list">
-<li><a class="reference" id="config_toc" href="#config">Config</a></li>
-<ul class="simple"><li><a class="reference" id="config-tldr_toc" href="#config-tldr">TLDR</a></li>
-</ul><li>
+<li><a class="reference" id="boatconfig_toc" href="#boatconfig">BoatConfig</a></li>
+<li>
   <a class="reference reference-toplevel" href="#6" id="56">Imports</a>
   <ul class="simple simple-toc-section">
     
   </ul>
 </li>
 <li>
+  <a class="reference reference-toplevel" href="#7" id="57">Types</a>
+  <ul class="simple simple-toc-section">
+      <li><a class="reference" href="#BoatConfig"
+    title="BoatConfig = ref object of RootObj
+  use*: string               ## \
+                             ## file / dir / remote uri pointing to a manifest.nim.ini">BoatConfig</a></li>
+
+  </ul>
+</li>
+<li>
   <a class="reference reference-toplevel" href="#12" id="62">Procs</a>
   <ul class="simple simple-toc-section">
+      <ul class="simple nested-toc-section">usePath
+      <li><a class="reference" href="#usePath%2CBoatConfig%2Cstring"
+    title="usePath(self: BoatConfig; path: string = &quot;&quot;): string">usePath(self: BoatConfig; path: string = &quot;&quot;): string</a></li>
+
+  </ul>
+
+  </ul>
+</li>
+<li>
+  <a class="reference reference-toplevel" href="#14" id="64">Methods</a>
+  <ul class="simple simple-toc-section">
       <ul class="simple nested-toc-section">init
-      <li><a class="reference" href="#init%2CBoatConfig"
+      <li><a class="reference" href="#init.e%2CBoatConfig"
     title="init(self: BoatConfig): bool">init(self: BoatConfig): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">isValid
-      <li><a class="reference" href="#isValid%2CBoatConfig%2Cstring"
-    title="isValid(self: BoatConfig; path: string = &quot;&quot;): bool">isValid(self: BoatConfig; path: string = &quot;&quot;): bool</a></li>
+      <li><a class="reference" href="#isValid.e%2CBoatConfig"
+    title="isValid(self: BoatConfig): bool">isValid(self: BoatConfig): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">load
-      <li><a class="reference" href="#load%2CBoatConfig"
+      <li><a class="reference" href="#load.e%2CBoatConfig"
     title="load(self: BoatConfig): bool">load(self: BoatConfig): bool</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">logAction
-      <li><a class="reference" href="#logAction%2CBoatConfig%2CAction%2Cauto"
-    title="logAction(self: BoatConfig; action: Action; data: auto): bool">logAction(self: BoatConfig; action: Action; data: auto): bool</a></li>
-
-  </ul>
   <ul class="simple nested-toc-section">parse
-      <li><a class="reference" href="#parse%2CBoatConfig%2Cstring%2CFileType"
-    title="parse(self: BoatConfig; path: string = &quot;&quot;; ft: FileType): bool">parse(self: BoatConfig; path: string = &quot;&quot;; ft: FileType): bool</a></li>
+      <li><a class="reference" href="#parse.e%2CBoatConfig%2Cstring"
+    title="parse(self: BoatConfig; path: string = &quot;&quot;): bool">parse(self: BoatConfig; path: string = &quot;&quot;): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">reload
-      <li><a class="reference" href="#reload%2CBoatConfig"
+      <li><a class="reference" href="#reload.e%2CBoatConfig"
     title="reload(self: BoatConfig): bool">reload(self: BoatConfig): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">save
-      <li><a class="reference" href="#save%2CBoatConfig%2CFileType"
-    title="save(self: BoatConfig; ft: FileType): bool">save(self: BoatConfig; ft: FileType): bool</a></li>
+      <li><a class="reference" href="#save.e%2CBoatConfig"
+    title="save(self: BoatConfig): bool">save(self: BoatConfig): bool</a></li>
 
   </ul>
 
@@ -166,100 +181,123 @@ class="link-seesrc" target="_blank">Source</a>
   <div id="tocRoot"></div>
   
   <p class="module-desc">
-<h1><a class="toc-backref" id="config" href="#config">Config</a></h1><p>extendable interface for creating, parsing and saving boat configs</p>
-
-<h2><a class="toc-backref" id="config-tldr" href="#config-tldr">TLDR</a></h2><ul class="simple"><li>come back later</li>
-</ul>
+<h1><a class="toc-backref" id="boatconfig" href="#boatconfig">BoatConfig</a></h1><p>extendable interface for creating, parsing and saving boat configs</p>
 </p>
   <div class="section" id="6">
 <h1><a class="toc-backref" href="#6">Imports</a></h1>
 <dl class="item">
-<a class="reference external" href="../../_._/bdd.html">../../../bdd</a>, <a class="reference external" href="boatConfigType.html">boatConfigType</a>, <a class="reference external" href="boatConstants.html">boatConstants</a>, <a class="reference external" href="boatErrors.html">boatErrors</a>, <a class="reference external" href="captainsLogUtils.html">captainsLogUtils</a>, <a class="reference external" href="fileManager.html">fileManager</a>
+<a class="reference external" href="../../_._/bdd.html">../../../bdd</a>, <a class="reference external" href="captainsLogUtils.html">captainsLogUtils</a>
+</dl></div>
+<div class="section" id="7">
+<h1><a class="toc-backref" href="#7">Types</a></h1>
+<dl class="item">
+<div id="BoatConfig">
+<dt><pre><a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
+  <span class="Identifier">use</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>               <span class="Comment">## \</span>
+                             <span class="Comment">## file / dir / remote uri pointing to a manifest.nim.ini</span>
+  </pre></dt>
+<dd>
+
+base type for all boat configs
+&nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L13"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+
 </dl></div>
 <div class="section" id="12">
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
-<div id="init,BoatConfig">
-<dt><pre><span class="Keyword">proc</span> <a href="#init%2CBoatConfig"><span class="Identifier">init</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="usePath,BoatConfig,string">
+<dt><pre><span class="Keyword">proc</span> <a href="#usePath%2CBoatConfig%2Cstring"><span class="Identifier">usePath</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-
+returns path if not empty, else self.use used whenever BoatConfig.use doesnt point to the effective path
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L63"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L63" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="isValid,BoatConfig,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#isValid%2CBoatConfig%2Cstring"><span class="Identifier">isValid</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+
+</dl></div>
+<div class="section" id="14">
+<h1><a class="toc-backref" href="#14">Methods</a></h1>
+<dl class="item">
+<div id="init.e,BoatConfig">
+<dt><pre><span class="Keyword">method</span> <a href="#init.e%2CBoatConfig"><span class="Identifier">init</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-throws if local BoatConfig not found, cant be read, or errors during parsing
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L33"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="load,BoatConfig">
-<dt><pre><span class="Keyword">proc</span> <a href="#load%2CBoatConfig"><span class="Identifier">load</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="isValid.e,BoatConfig">
+<dt><pre><span class="Keyword">method</span> <a href="#isValid.e%2CBoatConfig"><span class="Identifier">isValid</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-(re)load a Configuration
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L83"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L27"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L83" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L27" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="logAction,BoatConfig,Action,auto">
-<dt><pre><span class="Keyword">proc</span> <a href="#logAction%2CBoatConfig%2CAction%2Cauto"><span class="Identifier">logAction</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">action</span><span class="Other">:</span> <a href="boatConstants.html#Action"><span class="Identifier">Action</span></a><span class="Other">;</span> <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">auto</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="load.e,BoatConfig">
+<dt><pre><span class="Keyword">method</span> <a href="#load.e%2CBoatConfig"><span class="Identifier">load</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-tracks actions taken to the captains log
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L49"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L49" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="parse,BoatConfig,string,FileType">
-<dt><pre><span class="Keyword">proc</span> <a href="#parse%2CBoatConfig%2Cstring%2CFileType"><span class="Identifier">parse</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">;</span> <span class="Identifier">ft</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="parse.e,BoatConfig,string">
+<dt><pre><span class="Keyword">method</span> <a href="#parse.e%2CBoatConfig%2Cstring"><span class="Identifier">parse</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">path</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span>
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-parses a local BoatConfig
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L28"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L36"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L36" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="reload,BoatConfig">
-<dt><pre><span class="Keyword">proc</span> <a href="#reload%2CBoatConfig"><span class="Identifier">reload</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="reload.e,BoatConfig">
+<dt><pre><span class="Keyword">method</span> <a href="#reload.e%2CBoatConfig"><span class="Identifier">reload</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-reloads a configuration from CaptainsLog
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L79"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L41"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L79" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L41" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
-<div id="save,BoatConfig,FileType">
-<dt><pre><span class="Keyword">proc</span> <a href="#save%2CBoatConfig%2CFileType"><span class="Identifier">save</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">;</span> <span class="Identifier">ft</span><span class="Other">:</span> <a href="fileManagerUtils.html#FileType"><span class="Identifier">FileType</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<div id="save.e,BoatConfig">
+<dt><pre><span class="Keyword">method</span> <a href="#save.e%2CBoatConfig"><span class="Identifier">save</span></a><span class="Other">(</span><span class="Identifier">self</span><span class="Other">:</span> <a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span class="Identifier">base</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">TddError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-caches BoatConfig to disk and potentially updates CaptainsLog with path
+
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L55"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L45"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L55" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -268,7 +306,7 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="19">
 <h1><a class="toc-backref" href="#19">Exports</a></h1>
 <dl class="item">
-<a href="boatConfigType.html#BoatConfig"><span class="Identifier">BoatConfig</span></a>, <a href="boatConfigType.html#usePath,BoatConfig,string"><span class="Identifier">usePath</span></a>, <a href="boatConstants.html#boatDirName"><span class="Identifier">boatDirName</span></a>, <a href="boatConstants.html#BoatConfigKind"><span class="Identifier">BoatConfigKind</span></a>, <a href="boatConstants.html#tempDir"><span class="Identifier">tempDir</span></a>, <a href="boatConstants.html#manifestName"><span class="Identifier">manifestName</span></a>, <a href="boatConstants.html#cacheDir"><span class="Identifier">cacheDir</span></a>, <a href="boatConstants.html#Action"><span class="Identifier">Action</span></a>
+<a href="captainsLogUtils.html#LogData"><span class="Identifier">LogData</span></a>
 </dl></div>
 
   </div>
@@ -278,7 +316,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-18 06:26:15 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-19 08:42:32 UTC</small>
       </div>
     </div>
   </div>
