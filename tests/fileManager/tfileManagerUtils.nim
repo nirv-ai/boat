@@ -5,6 +5,8 @@ exitcode: 0
 """
 
 from std/strutils import startsWith
+from std/hashes import hash
+from std/os import lastPathPart
 
 import ../../bdd
 
@@ -24,16 +26,22 @@ block dir:
   it should, "return cacheDir path", () => true.dir == cacheDir
   it should, "return tempDir path", () => false.dir == tempDir
 
-# block path:
-#   let it = bdd "file manager utils: path"
-#   let testPath = "test/path"
+block path:
+  let it = bdd "file manager utils: path"
+  let testPath = "test/path"
 
-#   it should, "compute cacheDir path", () => (
-#     let output = testPath.path(true)
-#     itShould "start with cacheDir", "",
-#     output.startsWith(cacheDir) == true
-#     output == testPath.path true
-#   )
+  it should, "use cacheDir", () => (
+    testPath.path(true).startsWith cacheDir
+  )
+  it should, "use tempDir", () => (
+    testPath.path(false).startsWith tempDir
+  )
+  it should, "compute hash", () => (
+    testPath.path(true).lastPathPart() == $hash(testPath)
+  )
+  it should, "compute identical hashes", () => (
+    testPath.path(true).lastPathPart() == testPath.path(true).lastPathPart()
+  )
 
 block config:
   let it = bdd "config"
