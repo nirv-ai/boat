@@ -52,11 +52,11 @@ proc retrieve*[T: FileTypes](self: T, path: string): T =
     debugEcho repr getCurrentException()
     raise fileLoadDefect
 
-proc pathDir*(self: string): string =
+proc pathDir*(path: string): string =
   ## returns path to a files directory, or the directory without a trailing slash
   result =
-    if self.searchExtPos >= Natural.low: self.splitPath.head
-    else: self.normalizePathEnd(true).splitPath.head
+    if path.searchExtPos >= Natural.low: path.splitPath.head
+    else: path.normalizePathEnd(true).splitPath.head
 
 proc dir*(useCache: bool = true): string =
   ## returns the cache / temp directory path
@@ -65,7 +65,7 @@ proc dir*(useCache: bool = true): string =
 
 proc path*(fname: string, useCache: bool = true): string =
   ## computes a filepath
-  result = useCache.dir  / $hash(fname)
+  result = useCache.dir / $hash(fname)
 
 proc encode*[T: Encodable](self: T): string =
   ## encodes json & strings for saving to disk

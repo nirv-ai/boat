@@ -25,9 +25,9 @@ block baseCaseLoadFile:
   it should, "load manifest", () => newManifest().load()
   it should, "auto parse manifest to Config", () => (
     let c = newManifest()
-    itShould(msg = "be nil before load()", condition = c.parsed.isNil)
+    itShould "be nil before load()", c.parsed.isNil
     discard c.load()
-    itShould(msg = "not be nil after load()", condition = c.parsed != nil)
+    itShouldNot "be nil after load()", c.parsed.isNil
     $c.parsed.typeof == "Config"
   )
   it should, "save parsed config to disk", () => (

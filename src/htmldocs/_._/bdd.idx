@@ -2,8 +2,9 @@ TddError	_._/bdd.html#TddError	bdd: TddError
 tddError	_._/bdd.html#tddError_2	bdd: tddError	
 BddDefect	_._/bdd.html#BddDefect	bdd: BddDefect	
 failure	_._/bdd.html#failure	bdd: failure	
-itShould	_._/bdd.html#itShould,string,string,bool	bdd: itShould(msg: string; name = &quot;test name: &quot;; condition: bool; istrue = true): void	
-itShouldNot	_._/bdd.html#itShouldNot,string,string,bool	bdd: itShouldNot(msg: string; name = &quot;test name: &quot;; condition: bool): void	
+assertCondition	_._/bdd.html#assertCondition,bool,bool,string,string	bdd: assertCondition(condition: bool; matches: bool; name: string; msg: string): void	
+itShould	_._/bdd.html#itShould,string,bool,string	bdd: itShould(msg: string; condition: bool; name = &quot;test name: &quot;): void	
+itShouldNot	_._/bdd.html#itShouldNot,string,bool,string	bdd: itShouldNot(msg: string; condition: bool; name = &quot;test name: &quot;): void	
 should	_._/bdd.html#should	What.should	
 shouldNot	_._/bdd.html#shouldNot	What.shouldNot	
 shouldNotRaise	_._/bdd.html#shouldNotRaise	What.shouldNotRaise	

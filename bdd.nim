@@ -3,7 +3,7 @@
 ## ===
 ## simple assertions for use with testament
 ## - [inspired by chaijs](https://www.chaijs.com/api/bdd/)
-
+# todo: extract this to a separate package
 
 import std/sugar
 
@@ -17,24 +17,33 @@ type BddDefect = ref object of Defect
 var failure = BddDefect(msg: "Invalid Test Parameters") ## \
   ## escape hatch to fail a test early
 
+proc assertCondition(
+  condition: bool,
+  matches: bool,
+  name: string,
+  msg: string,
+  ): void =
+    ## tests the assertion
+    ## all other methods are sugar for this proc
+    doAssert condition == matches, name & " -> " & msg
+
 proc itShould*(
   msg: string,
-  name = "test name: ",
   condition: bool,
-  istrue = true
+  name = "test name: ",
   ): void =
     ## asserts condition matches expectation
     ## prefer creating a test case with bdd
-    doAssert condition == istrue, name & " -> " & msg
+    assertCondition condition, true, name, msg
 
 proc itShouldNot*(
   msg: string,
+  condition: bool,
   name = "test name: ",
-  condition: bool
   ): void =
     ## asserts condition matches expectation
     ## prefer creating a test case with bdd
-    itShould msg, name, condition, false
+    assertCondition condition, false, name, msg
 
 type What* = enum
   ## expected result of some condition
@@ -43,7 +52,7 @@ type What* = enum
   shouldNotRaise, ## error when called
   shouldRaise, ## error when called
   shouldRaiseMsg, ## when called
-  shouldNotRaiseMsg, ## but any different msg
+  shouldNotRaiseMsg, ## but should raise a different msg when called
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## simple assertions for use with testament
@@ -51,8 +60,8 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## validates condition matches expectation
   (what: What, msg: string, condition: () -> bool) => (
     case what
-      of should: itShould msg, caseName, condition()
-      of shouldNot: itShouldNot msg, caseName, condition()
+      of should: itShould msg, condition(), caseName
+      of shouldNot: itShouldNot msg, condition(), caseName
       of
         shouldNotRaise,
         shouldNotRaiseMsg,
@@ -66,10 +75,10 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
             msgRaised = getCurrentExceptionMsg()
           finally:
             case what:
-            of shouldNotRaise: itShouldNot msg, caseName, didRaise
-            of shouldNotRaiseMsg: itShould msg, caseName, didRaise and msgRaised != msg
-            of shouldRaise: itShould msg, caseName, didRaise
-            of shouldRaiseMsg: itShould msg, caseName, didRaise and msgRaised == msg
+            of shouldNotRaise: itShouldNot msg, didRaise, caseName
+            of shouldNotRaiseMsg: itShould msg, didRaise and msgRaised != msg, caseName
+            of shouldRaise: itShould msg, didRaise, caseName
+            of shouldRaiseMsg: itShould msg, didRaise and msgRaised == msg, caseName
             else: raise failure
   )
 
