@@ -16,6 +16,8 @@ import private/[
   fileManager
 ]
 
+const manifestName* = "manifest.nim.ini" ## \
+  ## the captains manifest must be named manifest.nim.ini
 
 type Manifest* = ref object of BoatConfig
   parsed*: Config ## \

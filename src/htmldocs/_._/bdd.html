@@ -107,16 +107,19 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#What"
     title="What = enum
   should,                   ## be true
-  shouldRaise,              ## error when called
   shouldNot,                ## be true
-  shouldNotRaise             ## error when called">What</a></li>
+  shouldNotRaise,           ## error when called
+  shouldRaise,              ## error when called
+  shouldRaiseMsg             ## when called">What</a></li>
 
   </ul>
 </li>
 <li>
   <a class="reference reference-toplevel" href="#8" id="58">Vars</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#tddError_2"
+      <li><a class="reference" href="#failure"
+    title="failure = TddError(msg: &quot;Test Failed&quot;)">failure</a></li>
+  <li><a class="reference" href="#tddError_2"
     title="tddError = TddError(msg: &quot;TODO: this feature isnt ready yet&quot;)">tddError</a></li>
 
   </ul>
@@ -176,16 +179,17 @@ class="link-seesrc" target="_blank">Source</a>
 <div id="What">
 <dt><pre><a href="bdd.html#What"><span class="Identifier">What</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">should</span><span class="Other">,</span>                   <span class="Comment">## be true</span>
-  <span class="Identifier">shouldRaise</span><span class="Other">,</span>              <span class="Comment">## error when called</span>
   <span class="Identifier">shouldNot</span><span class="Other">,</span>                <span class="Comment">## be true</span>
-  <span class="Identifier">shouldNotRaise</span>             <span class="Comment">## error when called</span></pre></dt>
+  <span class="Identifier">shouldNotRaise</span><span class="Other">,</span>           <span class="Comment">## error when called</span>
+  <span class="Identifier">shouldRaise</span><span class="Other">,</span>              <span class="Comment">## error when called</span>
+  <span class="Identifier">shouldRaiseMsg</span>             <span class="Comment">## when called</span></pre></dt>
 <dd>
 
 expected result of some condition
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L38"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L40"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -194,16 +198,29 @@ class="link-seesrc" target="_blank">Source</a>
 <div class="section" id="8">
 <h1><a class="toc-backref" href="#8">Vars</a></h1>
 <dl class="item">
+<div id="failure">
+<dt><pre><span class="Identifier">failure</span> <span class="Other">=</span> <a href="bdd.html#TddError"><span class="Identifier">TddError</span></a><span class="Other">(</span><span class="Identifier">msg</span><span class="Other">:</span> <span class="StringLit">&quot;Test Failed&quot;</span><span class="Other">)</span></pre></dt>
+<dd>
+
+
+escape hatch to fail a test early
+&nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L16"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
 <div id="tddError_2">
 <dt><pre><a href="bdd.html#tddError"><span class="Identifier">tddError</span></a> <span class="Other">=</span> <a href="bdd.html#TddError"><span class="Identifier">TddError</span></a><span class="Other">(</span><span class="Identifier">msg</span><span class="Other">:</span> <span class="StringLit">&quot;TODO: this feature isnt ready yet&quot;</span><span class="Other">)</span></pre></dt>
 <dd>
 
 
-ready to be raised tddError
+ready to be raised tdd error
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L16"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -219,9 +236,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 simple assertions for use with testament provide a test name and receive a fn that validates condition matches expectation
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L45"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L48"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L45" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L48" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -232,9 +249,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L19"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L19" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -245,9 +262,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L29"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L31"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -261,7 +278,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-19 08:42:32 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-19 17:00:25 UTC</small>
       </div>
     </div>
   </div>

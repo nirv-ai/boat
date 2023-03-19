@@ -176,7 +176,6 @@ digraph boat {
 "std/strformat" -> "std/strutils";
 "boat/private/boatErrors" -> "std/strformat";
 "boat/private/boatConstants" -> "boat/private/boatErrors";
-"boat/private/boatConfig" -> "../bdd";
 "std/parsecfg" -> "std/strutils";
 "std/parsecfg" -> "std/lexbase";
 "std/parsecfg" -> "std/streams";
@@ -186,6 +185,7 @@ digraph boat {
 "boat/private/boatConfig" -> "std/parsecfg";
 "boat/private/boatConfig" -> "std/json";
 "boat/private/boatConfig" -> "boat/private/captainsLogUtils";
+"boat/private/boatConfig" -> "boat/private/boatErrors";
 "boat/private/fileManager" -> "../bdd";
 "boat/private/fileManagerUtils" -> "../bdd";
 "boat/private/fileManagerUtils" -> "std/asyncdispatch";

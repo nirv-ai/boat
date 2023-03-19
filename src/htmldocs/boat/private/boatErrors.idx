@@ -4,6 +4,7 @@ fileLoadError	boat/private/boatErrors.html#fileLoadError	boatErrors: fileLoadErr
 filePermissionError	boat/private/boatErrors.html#filePermissionError	boatErrors: filePermissionError	
 fileSaveError	boat/private/boatErrors.html#fileSaveError	boatErrors: fileSaveError	
 manifestNameError	boat/private/boatErrors.html#manifestNameError	boatErrors: manifestNameError	
+overloadError	boat/private/boatErrors.html#overloadError	boatErrors: overloadError	
 BoatDefect	boat/private/boatErrors.html#BoatDefect	boatErrors: BoatDefect	
 dirCreateDefect	boat/private/boatErrors.html#dirCreateDefect	boatErrors: dirCreateDefect	
 fileLoadDefect	boat/private/boatErrors.html#fileLoadDefect	boatErrors: fileLoadDefect	

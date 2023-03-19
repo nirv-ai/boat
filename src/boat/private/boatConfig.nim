@@ -3,12 +3,11 @@
 ## ==========
 ## extendable interface for creating, parsing and saving boat configs
 
-from ../../../bdd import tddError
-
 from parsecfg import Config
 from json import JsonNode
 
 from captainsLogUtils import Action, LogData
+from boatErrors import overloadError
 
 type BoatConfig* = ref object of RootObj
   ## base type for all boat configs
@@ -20,38 +19,30 @@ proc usePath*(self: BoatConfig, path: string = ""): string =
   ## used whenever BoatConfig.use doesnt point to the effective path
   if path.len > Natural.low: path else: self.use
 
-method init*(
-  self: BoatConfig
-  ): bool {.base.} = raise tddError
+method init*(self: BoatConfig): bool {.base.} = raise overloadError
+  ## initializes (load/reload) a BoatConfig
 
-method isValid*(
-  self: BoatConfig
-  ): bool {.base.} = raise tddError
+method isValid*(self: BoatConfig): bool {.base.} = raise overloadError
+  ## validates a BoatConfig
 
-method load*(
-  self: BoatConfig
-  ): bool {.base.} = raise tddError
+method load*(self: BoatConfig): bool {.base.} = raise overloadError
+  ## loads a fresh BoatConfig
 
+method parse*(self: BoatConfig, path: string = ""): bool {.base.} = raise overloadError
+  ## parses a boatConfig
 
-method parse*(
-  self: BoatConfig,
-  path: string = ""
-  ): bool {.base.} = raise tddError
+method reload*(self: BoatConfig): bool {.base.} = raise overloadError
+  ## reloads a BoatConfig from cache
 
-method reload*(
-  self: BoatConfig
-  ): bool {.base.} = raise tddError
-
-method save*(
-  self: BoatConfig
-  ): bool {.base.} = raise tddError
-
+method save*(self: BoatConfig): bool {.base.} = raise overloadError
+  ## saves a BoatConfig to disk
 
 export
+  captainsLogUtils.Action,
   captainsLogUtils.LogData,
   json.JsonNode,
   parsecfg.Config
 
 when isMainModule:
   debugEcho repr BoatConfig(use: "xyz")
-  debugEcho repr BoatConfig(use: "xyz")
+  debugEcho repr BoatConfig(use: "xyz").typeof

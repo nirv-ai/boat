@@ -7,10 +7,6 @@ import std/os
 
 import boatErrors
 
-const manifestName* = "manifest.nim.ini" ## \
-  ## the captains manifest must be named manifest.nim.ini
-  ## contains / points to other manifests
-
 const boatDirName* = "boat" ## \
   ## parent directory for all boat assets
 
@@ -26,7 +22,6 @@ for dir in @[cacheDir, tempDir]:
   except CatchableError:
     debugEcho repr getCurrentException()
     raise dirCreateDefect
-
 
 when isMainModule:
   debugEcho cacheDir

@@ -13,8 +13,10 @@ export sugar
 type TddError* = ref object of CatchableError
   ## generic error for test driven development
 
+var failure = TddError(msg: "Test Failed") ## \
+  ## escape hatch to fail a test early
 var tddError* = TddError(msg: "TODO: this feature isnt ready yet") ## \
-  ## ready to be raised tddError
+  ## ready to be raised tdd error
 
 proc itShould*(
   msg: string,
@@ -38,9 +40,10 @@ proc itShouldNot*(
 type What* = enum
   ## expected result of some condition
   should, ## be true
-  shouldRaise, ## error when called
   shouldNot, ## be true
   shouldNotRaise, ## error when called
+  shouldRaise, ## error when called
+  shouldRaiseMsg, ## when called
 
 proc bdd*(caseName: string): (What, string, () -> bool) -> void =
   ## simple assertions for use with testament
@@ -50,22 +53,33 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
     case what
       of should: itShould msg, caseName, condition()
       of shouldNot: itShouldNot msg, caseName, condition()
-      of shouldRaise, shouldNotRaise:
-        var didRaise = false
-        try: discard condition()
-        except: didRaise = true
-        finally:
-          if what.ord == shouldRaise.ord: itShould msg, caseName, didRaise
-          else: itShouldNot msg, caseName, didRaise
+      of
+        shouldNotRaise,
+        shouldRaise,
+        shouldRaiseMsg:
+          var didRaise = false
+          var msgRaised: string
+          try: discard condition()
+          except CatchableError, Defect:
+            didRaise = true
+            msgRaised = getCurrentExceptionMsg()
+          finally:
+            case what:
+            of shouldNotRaise: itShouldNot msg, caseName, didRaise
+            of shouldRaise: itShould msg, caseName, didRaise
+            of shouldRaiseMsg: itShould msg, caseName, didRaise and msgRaised == msg
+            else: raise failure
   )
 
 
 when isMainModule:
   proc catchme: bool = raise TddError(msg: "if you can")
+  proc raiseMsg: bool = raise failure
 
   let it = bdd "bdd tests"
   it should, "be true", () => true
   it shouldNot, "be true", () => false
-  it shouldRaise, "error", () => catchme()
   it shouldNotRaise, "error", () => true
   it shouldNotRaise, "or care about result", () => false
+  it shouldRaise, "error", () => catchme()
+  it shouldRaiseMsg, failure.msg, () => raiseMsg()

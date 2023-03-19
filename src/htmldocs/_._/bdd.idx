@@ -1,11 +1,13 @@
 TddError	_._/bdd.html#TddError	bdd: TddError	
+failure	_._/bdd.html#failure	bdd: failure	
 tddError	_._/bdd.html#tddError_2	bdd: tddError	
 itShould	_._/bdd.html#itShould,string,string,bool	bdd: itShould(msg: string; name = &quot;test name: &quot;; condition: bool; istrue = true): void	
 itShouldNot	_._/bdd.html#itShouldNot,string,string,bool	bdd: itShouldNot(msg: string; name = &quot;test name: &quot;; condition: bool): void	
 should	_._/bdd.html#should	What.should	
-shouldRaise	_._/bdd.html#shouldRaise	What.shouldRaise	
 shouldNot	_._/bdd.html#shouldNot	What.shouldNot	
 shouldNotRaise	_._/bdd.html#shouldNotRaise	What.shouldNotRaise	
+shouldRaise	_._/bdd.html#shouldRaise	What.shouldRaise	
+shouldRaiseMsg	_._/bdd.html#shouldRaiseMsg	What.shouldRaiseMsg	
 What	_._/bdd.html#What	bdd: What	
 bdd	_._/bdd.html#bdd,string	bdd: bdd(caseName: string): (What, string, () -&gt; bool) -&gt; void	
 Bdd	_._/bdd.html#bdd	 Bdd	

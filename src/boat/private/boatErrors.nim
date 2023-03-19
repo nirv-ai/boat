@@ -13,6 +13,7 @@ var fileLoadError* = BoatError(msg: "Cant Load File")
 var filePermissionError* = BoatError(msg: "Invalid File Permissions")
 var fileSaveError* = BoatError(msg: "Cant Save File")
 var manifestNameError* = BoatError(msg: "Invalid Manifest Name")
+var overloadError* = BoatError(msg: "Not Implemented: Overload Required")
 
 type BoatDefect = ref object of Defect ## \
   # standard boat defect
