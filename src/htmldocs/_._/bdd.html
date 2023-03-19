@@ -102,7 +102,9 @@ window.addEventListener('DOMContentLoaded', main);
 <li>
   <a class="reference reference-toplevel" href="#7" id="57">Types</a>
   <ul class="simple simple-toc-section">
-      <li><a class="reference" href="#TddError"
+      <li><a class="reference" href="#BddDefect"
+    title="BddDefect = ref object of Defect">BddDefect</a></li>
+  <li><a class="reference" href="#TddError"
     title="TddError = ref object of CatchableError">TddError</a></li>
   <li><a class="reference" href="#What"
     title="What = enum
@@ -110,7 +112,8 @@ window.addEventListener('DOMContentLoaded', main);
   shouldNot,                ## be true
   shouldNotRaise,           ## error when called
   shouldRaise,              ## error when called
-  shouldRaiseMsg             ## when called">What</a></li>
+  shouldRaiseMsg,           ## when called
+  shouldNotRaiseMsg          ## but any different msg">What</a></li>
 
   </ul>
 </li>
@@ -118,7 +121,7 @@ window.addEventListener('DOMContentLoaded', main);
   <a class="reference reference-toplevel" href="#8" id="58">Vars</a>
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#failure"
-    title="failure = TddError(msg: &quot;Test Failed&quot;)">failure</a></li>
+    title="failure = BddDefect(msg: &quot;Invalid Test Parameters&quot;)">failure</a></li>
   <li><a class="reference" href="#tddError_2"
     title="tddError = TddError(msg: &quot;TODO: this feature isnt ready yet&quot;)">tddError</a></li>
 
@@ -159,10 +162,25 @@ class="link-seesrc" target="_blank">Source</a>
   
   <p class="module-desc">
 <h1><a class="toc-backref" id="bdd" href="#bdd">Bdd</a></h1><p>simple assertions for use with testament</p>
+<ul class="simple"><li><a class="reference external" href="https://www.chaijs.com/api/bdd/">inspired by chaijs</a></li>
+</ul>
 </p>
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
+<div id="BddDefect">
+<dt><pre><span class="Identifier">BddDefect</span> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">Defect</span>
+  </pre></dt>
+<dd>
+
+not a tddError, used internally
+&nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L15"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
 <div id="TddError">
 <dt><pre><a href="bdd.html#TddError"><span class="Identifier">TddError</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">CatchableError</span>
   </pre></dt>
@@ -170,9 +188,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 generic error for test driven development
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L13"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L10"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L10" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -182,14 +200,15 @@ class="link-seesrc" target="_blank">Source</a>
   <span class="Identifier">shouldNot</span><span class="Other">,</span>                <span class="Comment">## be true</span>
   <span class="Identifier">shouldNotRaise</span><span class="Other">,</span>           <span class="Comment">## error when called</span>
   <span class="Identifier">shouldRaise</span><span class="Other">,</span>              <span class="Comment">## error when called</span>
-  <span class="Identifier">shouldRaiseMsg</span>             <span class="Comment">## when called</span></pre></dt>
+  <span class="Identifier">shouldRaiseMsg</span><span class="Other">,</span>           <span class="Comment">## when called</span>
+  <span class="Identifier">shouldNotRaiseMsg</span>          <span class="Comment">## but any different msg</span></pre></dt>
 <dd>
 
 expected result of some condition
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L40"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L39"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L40" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L39" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -199,15 +218,15 @@ class="link-seesrc" target="_blank">Source</a>
 <h1><a class="toc-backref" href="#8">Vars</a></h1>
 <dl class="item">
 <div id="failure">
-<dt><pre><span class="Identifier">failure</span> <span class="Other">=</span> <a href="bdd.html#TddError"><span class="Identifier">TddError</span></a><span class="Other">(</span><span class="Identifier">msg</span><span class="Other">:</span> <span class="StringLit">&quot;Test Failed&quot;</span><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Identifier">failure</span> <span class="Other">=</span> <span class="Identifier">BddDefect</span><span class="Other">(</span><span class="Identifier">msg</span><span class="Other">:</span> <span class="StringLit">&quot;Invalid Test Parameters&quot;</span><span class="Other">)</span></pre></dt>
 <dd>
 
 
 escape hatch to fail a test early
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L16"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L17"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -218,9 +237,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 ready to be raised tdd error
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L18"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L12"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L12" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -249,9 +268,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L21"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L20"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -262,9 +281,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L31"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L30"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L30" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -278,7 +297,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-19 17:00:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-19 20:18:41 UTC</small>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+manifestName	boat/manifest.html#manifestName	manifest: manifestName	
 Manifest	boat/manifest.html#Manifest	manifest: Manifest	
 parse	boat/manifest.html#parse.e,Manifest,string	manifest: parse(self: Manifest; path: string = &quot;&quot;): bool	
 isValid	boat/manifest.html#isValid.e,Manifest	manifest: isValid(self: Manifest): bool	

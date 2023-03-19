@@ -52,9 +52,11 @@ proc retrieve*[T: FileTypes](self: T, path: string): T =
     debugEcho repr getCurrentException()
     raise fileLoadDefect
 
-proc pathDir*(path: string): string = path.splitPath.head
-  ## used to sync some/path/manifest.nim.ini and some/path/ to the same hash value
-  # see the TODOS up top, this will fail on some/path without a trailing /
+proc pathDir*(self: string): string =
+  ## returns path to a files directory, or the directory without a trailing slash
+  result =
+    if self.searchExtPos >= Natural.low: self.splitPath.head
+    else: self.normalizePathEnd(true).splitPath.head
 
 proc dir*(useCache: bool = true): string =
   ## returns the cache / temp directory path
@@ -75,5 +77,7 @@ proc decode*[T: Encodable](self: T): T = raise tddError
 
 export
   asyncdispatch,
+  boatConstants.cacheDir,
+  boatConstants.tempDir,
   json,
   parsecfg

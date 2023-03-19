@@ -2,7 +2,7 @@ FileTypes	boat/private/fileManagerUtils.html#FileTypes	fileManagerUtils: FileTyp
 Encodable	boat/private/fileManagerUtils.html#Encodable	fileManagerUtils: Encodable	
 persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileTypes](self: T; path: string): Future[void]	
 retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileTypes](self: T; path: string): T	
-pathDir	boat/private/fileManagerUtils.html#pathDir,string	fileManagerUtils: pathDir(path: string): string	
+pathDir	boat/private/fileManagerUtils.html#pathDir,string	fileManagerUtils: pathDir(self: string): string	
 dir	boat/private/fileManagerUtils.html#dir,bool	fileManagerUtils: dir(useCache: bool = true): string	
 path	boat/private/fileManagerUtils.html#path,string,bool	fileManagerUtils: path(fname: string; useCache: bool = true): string	
 encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: Encodable](self: T): string	

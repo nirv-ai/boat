@@ -1,9 +1,9 @@
-import std/[os, parsecfg]
+import std/[os]
 
 import ../src/boat/private/[boatConstants, fileManagerUtils]
 import ../src/boat/manifest
 
-let defaultManifest = getCurrentDir() / "src/boat/private/captain/manifest.nim.ini"
+let defaultManifest* = getCurrentDir() / "src/boat/private/captain/manifest.nim.ini"
 
 proc newManifest*(
   use: string = defaultManifest
