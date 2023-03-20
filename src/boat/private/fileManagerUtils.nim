@@ -29,8 +29,8 @@ import std/[
 
 import boatErrors, boatConstants
 
-type FileTypes* = Config | JsonNode | string
 type Encodable* = JsonNode | string
+type FileTypes* = Config | JsonNode | string
 
 proc persist*[T: FileTypes](self: T, path: string): Future[void] {.async.} =
   ## persists a FileType to path
@@ -73,6 +73,9 @@ proc encode*[T: Encodable](self: T): string =
   # of string -> base64
 
 proc decode*[T: Encodable](self: T): T = raise tddError
+  # parse to string ->
+    # if json parse to and return json
+    # else return string
 
 export
   asyncdispatch,

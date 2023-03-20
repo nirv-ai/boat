@@ -110,8 +110,9 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#BoatConfig"
     title="BoatConfig = ref object of RootObj
-  use*: string               ## \
-                             ## file / dir / remote uri pointing to a manifest.nim.ini">BoatConfig</a></li>
+  use*: string ## \
+               ## file / dir / remote uri pointing to a manifest.nim.ini
+               ## try parsed* with the type alias again: https://forum.nim-lang.org/t/10023">BoatConfig</a></li>
 
   </ul>
 </li>
@@ -193,8 +194,9 @@ class="link-seesrc" target="_blank">Source</a>
 <dl class="item">
 <div id="BoatConfig">
 <dt><pre><a href="boatConfig.html#BoatConfig"><span class="Identifier">BoatConfig</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <span class="Identifier">RootObj</span>
-  <span class="Identifier">use</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>               <span class="Comment">## \</span>
-                             <span class="Comment">## file / dir / remote uri pointing to a manifest.nim.ini</span>
+  <span class="Identifier">use</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Comment">## \</span>
+               <span class="Comment">## file / dir / remote uri pointing to a manifest.nim.ini</span>
+               <span class="Comment">## try parsed* with the type alias again: https://forum.nim-lang.org/t/10023</span>
   </pre></dt>
 <dd>
 
@@ -217,9 +219,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 returns path if not empty, else self.use used whenever BoatConfig.use doesnt point to the effective path
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L17"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L17" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -234,9 +236,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 initializes (load/reload) a BoatConfig
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L22"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L22" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -246,9 +248,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 validates a BoatConfig
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L25"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L26"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L25" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L26" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -258,9 +260,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 loads a fresh BoatConfig
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L28"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L29"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L28" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L29" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -271,9 +273,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 parses a boatConfig
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L31"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L32"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L31" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L32" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -283,9 +285,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 reloads a BoatConfig from cache
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L34"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L35"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L34" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L35" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -295,9 +297,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 saves a BoatConfig to disk
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L37"
+href="https://github.com/nirv-ai/boat/tree/develop/src/boat/private/boatConfig.nim#L38"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L37" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/src/boat/private/boatConfig.nim#L38" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -316,7 +318,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-20 00:34:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-20 16:48:12 UTC</small>
       </div>
     </div>
   </div>

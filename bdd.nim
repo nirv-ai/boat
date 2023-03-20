@@ -6,7 +6,10 @@
 # todo: extract this to a separate package
 # todo: think through how to auto-clean up stuff created during tests
 # ^ think testament auto sets d:testing which can help with this
+# ^^ use a pragma to change the appname: https://nim-lang.org/docs/manual.html#implementation-specific-pragmas-compileminustime-define-pragmas
 # ^ also make note about native nimlang procs, e.g. tryRemoveFile returns bool
+# see if we can integrate with https://github.com/binhonglee/coco
+
 
 import std/sugar
 
@@ -19,6 +22,13 @@ type BddDefect = ref object of Defect
   ## not a tddError, used internally
 var failure = BddDefect(msg: "Invalid Test Parameters") ## \
   ## escape hatch to fail a test early
+
+# TODO: i think pushing these pragmas reduces test speed signficantly
+{.hints: off,
+optimization: speed,
+push checks: off,
+stackTrace: on,
+warnings: off.}
 
 proc assertCondition(
   condition: bool,
@@ -48,21 +58,21 @@ proc itShouldNot*(
     ## prefer creating a test case with bdd
     assertCondition condition, false, name, msg
 
-type What* = enum
+type ShouldWhat* = enum
   ## expected result of some condition
   should, ## be true
   shouldNot, ## be true
   shouldNotRaise, ## error when called
+  shouldNotRaiseMsg, ## but should raise a different msg when called
   shouldRaise, ## error when called
   shouldRaiseMsg, ## when called
-  shouldNotRaiseMsg, ## but should raise a different msg when called
 
-proc bdd*(caseName: string): (What, string, () -> bool) -> void =
+proc bdd*(caseName: string): (ShouldWhat, string, () -> bool) -> void =
   ## simple assertions for use with testament
   ## provide a test name and receive a fn that
   ## validates condition matches expectation
-  (what: What, msg: string, condition: () -> bool) => (
-    case what
+  (ShouldWhat: ShouldWhat, msg: string, condition: () -> bool) => (
+    case ShouldWhat
       of should: itShould msg, condition(), caseName
       of shouldNot: itShouldNot msg, condition(), caseName
       of
@@ -77,13 +87,15 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
             didRaise = true
             msgRaised = getCurrentExceptionMsg()
           finally:
-            case what:
+            case ShouldWhat:
             of shouldNotRaise: itShouldNot msg, didRaise, caseName
             of shouldNotRaiseMsg: itShould msg, didRaise and msgRaised != msg, caseName
             of shouldRaise: itShould msg, didRaise, caseName
             of shouldRaiseMsg: itShould msg, didRaise and msgRaised == msg, caseName
             else: raise failure
   )
+
+{.pop.}
 
 export sugar
 

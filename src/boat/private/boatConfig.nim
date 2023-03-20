@@ -13,6 +13,7 @@ type BoatConfig* = ref object of RootObj
   ## base type for all boat configs
   use*: string ## \
     ## file / dir / remote uri pointing to a manifest.nim.ini
+  ## try parsed* with the type alias again: https://forum.nim-lang.org/t/10023
 
 proc usePath*(self: BoatConfig, path: string = ""): string =
   ## returns path if not empty, else self.use

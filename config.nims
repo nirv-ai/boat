@@ -1,9 +1,10 @@
 --debugger:native
---deepcopy:on
+--deepcopy:on # required for mm:orc/arc
 --define:nimPreviewHashRef
 --define:nimStrictDelete
 --define:ssl
 --define:threadsafe
+--experimental:strictEffects
 --hints:on
 --mm:orc
 --multimethods:on
@@ -13,6 +14,7 @@
 --threads:on
 --tlsEmulation:on
 --warnings:on
+# --panics:on # we need to rework logic to guard against defects
 
 case getCommand():
   of "c", "cc", "cpp", "objc":

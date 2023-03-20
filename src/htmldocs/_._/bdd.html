@@ -104,16 +104,16 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#BddDefect"
     title="BddDefect = ref object of Defect">BddDefect</a></li>
-  <li><a class="reference" href="#TddError"
-    title="TddError = ref object of CatchableError">TddError</a></li>
-  <li><a class="reference" href="#What"
-    title="What = enum
+  <li><a class="reference" href="#ShouldWhat"
+    title="ShouldWhat = enum
   should,                   ## be true
   shouldNot,                ## be true
   shouldNotRaise,           ## error when called
+  shouldNotRaiseMsg,        ## but should raise a different msg when called
   shouldRaise,              ## error when called
-  shouldRaiseMsg,           ## when called
-  shouldNotRaiseMsg          ## but should raise a different msg when called">What</a></li>
+  shouldRaiseMsg             ## when called">ShouldWhat</a></li>
+  <li><a class="reference" href="#TddError"
+    title="TddError = ref object of CatchableError">TddError</a></li>
 
   </ul>
 </li>
@@ -137,7 +137,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">bdd
       <li><a class="reference" href="#bdd%2Cstring"
-    title="bdd(caseName: string): (What, string, () -&gt; bool) -&gt; void">bdd(caseName: string): (What, string, () -&gt; bool) -&gt; void</a></li>
+    title="bdd(caseName: string): (ShouldWhat, string, () -&gt; bool) -&gt; void">bdd(caseName: string): (ShouldWhat, string, () -&gt; bool) -&gt; void</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">itShould
@@ -180,9 +180,27 @@ class="link-seesrc" target="_blank">Source</a>
 
 not a tddError, used internally
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L18"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L21"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L21" class="link-seesrc" target="_blank" >Edit</a>
+
+</dd>
+</div>
+<div id="ShouldWhat">
+<dt><pre><a href="bdd.html#ShouldWhat"><span class="Identifier">ShouldWhat</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
+  <span class="Identifier">should</span><span class="Other">,</span>                   <span class="Comment">## be true</span>
+  <span class="Identifier">shouldNot</span><span class="Other">,</span>                <span class="Comment">## be true</span>
+  <span class="Identifier">shouldNotRaise</span><span class="Other">,</span>           <span class="Comment">## error when called</span>
+  <span class="Identifier">shouldNotRaiseMsg</span><span class="Other">,</span>        <span class="Comment">## but should raise a different msg when called</span>
+  <span class="Identifier">shouldRaise</span><span class="Other">,</span>              <span class="Comment">## error when called</span>
+  <span class="Identifier">shouldRaiseMsg</span>             <span class="Comment">## when called</span></pre></dt>
+<dd>
+
+expected result of some condition
+&nbsp;&nbsp;<a
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L61"
+class="link-seesrc" target="_blank">Source</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L61" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -193,27 +211,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 generic error for test driven development
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L13"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L16"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L13" class="link-seesrc" target="_blank" >Edit</a>
-
-</dd>
-</div>
-<div id="What">
-<dt><pre><a href="bdd.html#What"><span class="Identifier">What</span></a> <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">should</span><span class="Other">,</span>                   <span class="Comment">## be true</span>
-  <span class="Identifier">shouldNot</span><span class="Other">,</span>                <span class="Comment">## be true</span>
-  <span class="Identifier">shouldNotRaise</span><span class="Other">,</span>           <span class="Comment">## error when called</span>
-  <span class="Identifier">shouldRaise</span><span class="Other">,</span>              <span class="Comment">## error when called</span>
-  <span class="Identifier">shouldRaiseMsg</span><span class="Other">,</span>           <span class="Comment">## when called</span>
-  <span class="Identifier">shouldNotRaiseMsg</span>          <span class="Comment">## but should raise a different msg when called</span></pre></dt>
-<dd>
-
-expected result of some condition
-&nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L51"
-class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L51" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L16" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -229,9 +229,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 escape hatch to fail a test early
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L20"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L23"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L20" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -242,9 +242,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 ready to be raised tdd error
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L15"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L18"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L15" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L18" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -260,22 +260,22 @@ class="link-seesrc" target="_blank">Source</a>
 
 tests the assertion all other methods are sugar for this proc
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L23"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L33"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L23" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
 <div id="bdd,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#bdd%2Cstring"><span class="Identifier">bdd</span></a><span class="Other">(</span><span class="Identifier">caseName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><a href="bdd.html#What"><span class="Identifier">What</span></a><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">void</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#bdd%2Cstring"><span class="Identifier">bdd</span></a><span class="Other">(</span><span class="Identifier">caseName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Other">(</span><a href="bdd.html#ShouldWhat"><span class="Identifier">ShouldWhat</span></a><span class="Other">,</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Other">(</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">bool</span><span class="Other">)</span> <span class="Operator">-&gt;</span> <span class="Identifier">void</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 simple assertions for use with testament provide a test name and receive a fn that validates condition matches expectation
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L60"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L70"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L60" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L70" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -286,9 +286,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L33"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L43"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L33" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L43" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -299,9 +299,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 asserts condition matches expectation prefer creating a test case with bdd
 &nbsp;&nbsp;<a
-href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L42"
+href="https://github.com/nirv-ai/boat/tree/develop/bdd.nim#L52"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L42" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/nirv-ai/boat/edit/devel/bdd.nim#L52" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -315,7 +315,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-20 00:34:24 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-03-20 16:48:11 UTC</small>
       </div>
     </div>
   </div>
