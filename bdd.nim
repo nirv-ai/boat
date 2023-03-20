@@ -8,6 +8,8 @@
 # ^ think testament auto sets d:testing which can help with this
 # ^^ use a pragma to change the appname: https://nim-lang.org/docs/manual.html#implementation-specific-pragmas-compileminustime-define-pragmas
 # ^ also make note about native nimlang procs, e.g. tryRemoveFile returns bool
+# see if we can integrate with https://github.com/binhonglee/coco
+
 
 import std/sugar
 
