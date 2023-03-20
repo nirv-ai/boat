@@ -10,7 +10,6 @@ import std/[os, strutils]
 from private/captainsLogUtils import logAction, Action
 
 import private/[
-  boatConstants,
   boatConfig,
   boatErrors,
   fileManager
@@ -45,8 +44,8 @@ method isValid*(self: Manifest): bool =
 
 
 method save*(self: Manifest): bool =
-  ## caches BoatConfig to disk and potentially updates CaptainsLog with path
-  let fpath = waitFor toDisk[Config](self.parsed, self.use)
+  ## caches BoatConfig to disk (based on manifest dir) and updates CaptainsLog with path
+  let fpath = waitFor toDisk[Config](self.parsed, self.use.pathDir)
   BoatConfigSave.logAction fpath
 
 

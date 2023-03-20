@@ -5,6 +5,7 @@ exitcode: 0
 """
 
 import std/os
+import std/strutils
 
 import ../../bdd
 import ../helpers
@@ -32,10 +33,11 @@ block baseCaseLoadFile:
   )
   it should, "save parsed config to disk", () => (
     let c = newManifest()
-    let expected = c.use.path true
+    let expected = c.use.pathDir.path true
     if expected.fileExists: expected.removeFile
     discard c.load()
-    expected.fileExists
+    itShould "save to cacheDir", expected.startsWith cacheDir
+    expected.tryRemoveFile # returns bool
   )
 
 block baseCaseLoadFileFromDir:

@@ -29,7 +29,6 @@ import std/[
 
 import boatErrors, boatConstants
 
-
 type FileTypes* = Config | JsonNode | string
 type Encodable* = JsonNode | string
 

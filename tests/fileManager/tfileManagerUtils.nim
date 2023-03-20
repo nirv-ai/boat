@@ -40,7 +40,7 @@ block path:
     testPath.path(true).lastPathPart() == $hash(testPath)
   )
   it should, "compute identical hashes", () => (
-    testPath.path(true).lastPathPart() == testPath.path(true).lastPathPart()
+    testPath.path(true).lastPathPart() == testPath.path(false).lastPathPart()
   )
 
 block config:
@@ -50,5 +50,5 @@ block config:
   )
 
   it shouldRaiseMsg, fileLoadDefect.msg, () => (
-    retrieve[Config](new(Config), "path/doesnt/exist").isNil
+    retrieve[Config](new(Config), "if/config/not/found").isNil
   )

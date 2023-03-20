@@ -22,7 +22,6 @@ proc toDisk*[T: FileTypes](
     ## persists data to cache or temp dir and returns path or throws if unsuccessful
     ## if T is json/string, will overwrite file if content is different
     ## if T is config, will always overwrite
-    let dirName = fname.pathDir
     let fpath = fname.path useCache
     # if json | string
       # encoded = getEncode(data)

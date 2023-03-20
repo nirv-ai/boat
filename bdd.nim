@@ -4,6 +4,9 @@
 ## simple assertions for use with testament
 ## - [inspired by chaijs](https://www.chaijs.com/api/bdd/)
 # todo: extract this to a separate package
+# todo: think through how to auto-clean up stuff created during tests
+# ^ think testament auto sets d:testing which can help with this
+# ^ also make note about native nimlang procs, e.g. tryRemoveFile returns bool
 
 import std/sugar
 
