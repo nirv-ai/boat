@@ -1,5 +1,5 @@
 --debugger:native
---deepcopy:on
+--deepcopy:on # required for mm:orc/arc
 --define:nimPreviewHashRef
 --define:nimStrictDelete
 --define:ssl

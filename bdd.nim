@@ -6,6 +6,7 @@
 # todo: extract this to a separate package
 # todo: think through how to auto-clean up stuff created during tests
 # ^ think testament auto sets d:testing which can help with this
+# ^^ use a pragma to change the appname: https://nim-lang.org/docs/manual.html#implementation-specific-pragmas-compileminustime-define-pragmas
 # ^ also make note about native nimlang procs, e.g. tryRemoveFile returns bool
 
 import std/sugar
@@ -19,6 +20,13 @@ type BddDefect = ref object of Defect
   ## not a tddError, used internally
 var failure = BddDefect(msg: "Invalid Test Parameters") ## \
   ## escape hatch to fail a test early
+
+# TODO: i think pushing these pragmas reduces test speed signficantly
+{.hints: off,
+optimization: speed,
+push checks: off,
+stackTrace: on,
+warnings: off.}
 
 proc assertCondition(
   condition: bool,
@@ -84,6 +92,8 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
             of shouldRaiseMsg: itShould msg, didRaise and msgRaised == msg, caseName
             else: raise failure
   )
+
+{.pop.}
 
 export sugar
 
