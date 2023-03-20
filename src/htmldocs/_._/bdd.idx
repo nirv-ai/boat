@@ -5,12 +5,12 @@ failure	_._/bdd.html#failure	bdd: failure
 assertCondition	_._/bdd.html#assertCondition,bool,bool,string,string	bdd: assertCondition(condition: bool; matches: bool; name: string; msg: string): void	
 itShould	_._/bdd.html#itShould,string,bool,string	bdd: itShould(msg: string; condition: bool; name = &quot;test name: &quot;): void	
 itShouldNot	_._/bdd.html#itShouldNot,string,bool,string	bdd: itShouldNot(msg: string; condition: bool; name = &quot;test name: &quot;): void	
-should	_._/bdd.html#should	What.should	
-shouldNot	_._/bdd.html#shouldNot	What.shouldNot	
-shouldNotRaise	_._/bdd.html#shouldNotRaise	What.shouldNotRaise	
-shouldRaise	_._/bdd.html#shouldRaise	What.shouldRaise	
-shouldRaiseMsg	_._/bdd.html#shouldRaiseMsg	What.shouldRaiseMsg	
-shouldNotRaiseMsg	_._/bdd.html#shouldNotRaiseMsg	What.shouldNotRaiseMsg	
-What	_._/bdd.html#What	bdd: What	
-bdd	_._/bdd.html#bdd,string	bdd: bdd(caseName: string): (What, string, () -&gt; bool) -&gt; void	
+should	_._/bdd.html#should	ShouldWhat.should	
+shouldNot	_._/bdd.html#shouldNot	ShouldWhat.shouldNot	
+shouldNotRaise	_._/bdd.html#shouldNotRaise	ShouldWhat.shouldNotRaise	
+shouldNotRaiseMsg	_._/bdd.html#shouldNotRaiseMsg	ShouldWhat.shouldNotRaiseMsg	
+shouldRaise	_._/bdd.html#shouldRaise	ShouldWhat.shouldRaise	
+shouldRaiseMsg	_._/bdd.html#shouldRaiseMsg	ShouldWhat.shouldRaiseMsg	
+ShouldWhat	_._/bdd.html#ShouldWhat	bdd: ShouldWhat	
+bdd	_._/bdd.html#bdd,string	bdd: bdd(caseName: string): (ShouldWhat, string, () -&gt; bool) -&gt; void	
 Bdd	_._/bdd.html#bdd	 Bdd	

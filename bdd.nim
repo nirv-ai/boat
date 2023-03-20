@@ -58,21 +58,21 @@ proc itShouldNot*(
     ## prefer creating a test case with bdd
     assertCondition condition, false, name, msg
 
-type What* = enum
+type ShouldWhat* = enum
   ## expected result of some condition
   should, ## be true
   shouldNot, ## be true
   shouldNotRaise, ## error when called
+  shouldNotRaiseMsg, ## but should raise a different msg when called
   shouldRaise, ## error when called
   shouldRaiseMsg, ## when called
-  shouldNotRaiseMsg, ## but should raise a different msg when called
 
-proc bdd*(caseName: string): (What, string, () -> bool) -> void =
+proc bdd*(caseName: string): (ShouldWhat, string, () -> bool) -> void =
   ## simple assertions for use with testament
   ## provide a test name and receive a fn that
   ## validates condition matches expectation
-  (what: What, msg: string, condition: () -> bool) => (
-    case what
+  (ShouldWhat: ShouldWhat, msg: string, condition: () -> bool) => (
+    case ShouldWhat
       of should: itShould msg, condition(), caseName
       of shouldNot: itShouldNot msg, condition(), caseName
       of
@@ -87,7 +87,7 @@ proc bdd*(caseName: string): (What, string, () -> bool) -> void =
             didRaise = true
             msgRaised = getCurrentExceptionMsg()
           finally:
-            case what:
+            case ShouldWhat:
             of shouldNotRaise: itShouldNot msg, didRaise, caseName
             of shouldNotRaiseMsg: itShould msg, didRaise and msgRaised != msg, caseName
             of shouldRaise: itShould msg, didRaise, caseName
