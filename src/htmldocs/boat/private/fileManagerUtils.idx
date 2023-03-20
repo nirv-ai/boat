@@ -1,13 +1,12 @@
-CaptainsLog	boat/private/fileManagerUtils.html#CaptainsLog	FileType.CaptainsLog	
-LocalManifest	boat/private/fileManagerUtils.html#LocalManifest	FileType.LocalManifest	
-RemoteManifest	boat/private/fileManagerUtils.html#RemoteManifest	FileType.RemoteManifest	
-FileType	boat/private/fileManagerUtils.html#FileType	fileManagerUtils: FileType	
-persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileType](self: T; path: string): Future[void]	
-retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileType](self: T; path: string): BoatConfigKind	
+FileTypes	boat/private/fileManagerUtils.html#FileTypes	fileManagerUtils: FileTypes	
+Encodable	boat/private/fileManagerUtils.html#Encodable	fileManagerUtils: Encodable	
+persist	boat/private/fileManagerUtils.html#persist,T,string	fileManagerUtils: persist[T: FileTypes](self: T; path: string): Future[void]	
+retrieve	boat/private/fileManagerUtils.html#retrieve,T,string	fileManagerUtils: retrieve[T: FileTypes](self: T; path: string): T	
 pathDir	boat/private/fileManagerUtils.html#pathDir,string	fileManagerUtils: pathDir(path: string): string	
-dir	boat/private/fileManagerUtils.html#dir,FileType	fileManagerUtils: dir(self: FileType): string	
-path	boat/private/fileManagerUtils.html#path,FileType,string	fileManagerUtils: path(self: FileType; fname: string): string	
-encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: JsonNode | string](self: T): string	
+dir	boat/private/fileManagerUtils.html#dir,bool	fileManagerUtils: dir(useCache: bool = true): string	
+path	boat/private/fileManagerUtils.html#path,string,bool	fileManagerUtils: path(fname: string; useCache: bool = true): string	
+encode	boat/private/fileManagerUtils.html#encode,T	fileManagerUtils: encode[T: Encodable](self: T): string	
+decode	boat/private/fileManagerUtils.html#decode,T	fileManagerUtils: decode[T: Encodable](self: T): T	
 FileManagerUtils	boat/private/fileManagerUtils.html#filemanagerutils	 FileManagerUtils	
 TLDR	boat/private/fileManagerUtils.html#filemanagerutils-tldr	  TLDR	
 todos	boat/private/fileManagerUtils.html#filemanagerutils-todos	  todos	

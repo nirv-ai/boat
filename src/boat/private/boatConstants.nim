@@ -5,24 +5,7 @@
 
 import std/os
 
-from json import JsonNode
-from parsecfg import Config
-
 import boatErrors
-
-type Action* = enum
-  BoatConfigRm,
-  BoatConfigSave,
-
-type BoatConfigKind* = Config | JsonNode ## \
-  ## a Config generally means a manifest
-  ## while JsonNode indicates a captainslog
-  # object variant may be more appropriate: https://nim-lang.org/docs/manual.html#types-object-variants)
-
-
-const manifestName* = "manifest.nim.ini" ## \
-  ## the captains manifest must be named manifest.nim.ini
-  ## contains / points to other manifests
 
 const boatDirName* = "boat" ## \
   ## parent directory for all boat assets
@@ -39,8 +22,6 @@ for dir in @[cacheDir, tempDir]:
   except CatchableError:
     debugEcho repr getCurrentException()
     raise dirCreateDefect
-
-export json.JsonNode, parsecfg.Config
 
 when isMainModule:
   debugEcho cacheDir

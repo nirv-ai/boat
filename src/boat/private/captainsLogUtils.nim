@@ -1,6 +1,13 @@
+from ../../../bdd import tddError
+
 import std/[asyncdispatch, json]
 from os import sleep
 
+type Action* = enum
+  BoatConfigRm,
+  BoatConfigSave,
+
+type LogData* = JsonNode | string
 
 type CaptainState* = enum
   ## realtime state of CaptainsLog
@@ -13,6 +20,12 @@ type CaptainState* = enum
   Initializing, ## init process started
   Ready, ## for work
   Busy, ## doing something
+
+proc logAction*(self: Action, data: string): bool =
+  ## tracks actions taken to the captains log
+  result = case self
+    of BoatConfigSave: true
+    else: raise tddError
 
 # todo: @see https://nim-lang.org/docs/manual.html#types-reference-and-pointer-types
 var captainsLog* = %* {

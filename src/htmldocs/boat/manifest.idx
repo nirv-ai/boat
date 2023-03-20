@@ -1,0 +1,8 @@
+manifestName	boat/manifest.html#manifestName	manifest: manifestName	
+Manifest	boat/manifest.html#Manifest	manifest: Manifest	
+parse	boat/manifest.html#parse.e,Manifest,string	manifest: parse(self: Manifest; path: string = &quot;&quot;): bool	
+isValid	boat/manifest.html#isValid.e,Manifest	manifest: isValid(self: Manifest): bool	
+save	boat/manifest.html#save.e,Manifest	manifest: save(self: Manifest): bool	
+reload	boat/manifest.html#reload.e,Manifest	manifest: reload(self: Manifest): bool	
+load	boat/manifest.html#load.e,Manifest	manifest: load(self: Manifest): bool	
+init	boat/manifest.html#init.e,Manifest	manifest: init(self: Manifest): bool	

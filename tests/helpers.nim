@@ -1,25 +1,24 @@
-import std/[os, parsecfg]
+import std/[os]
 
-import ../src/boat/private/[boatConfig, boatConstants, fileManagerUtils]
+import ../src/boat/private/[boatConstants, fileManagerUtils]
+import ../src/boat/manifest
 
-let defaultManifest = getCurrentDir() / "src/boat/private/captain/manifest.nim.ini"
+let defaultManifest* = getCurrentDir() / "src/boat/private/captain/manifest.nim.ini"
 
-proc newConf*[T: BoatConfigKind = Config](
-  self: T = newConfig(),
+proc newManifest*(
   use: string = defaultManifest
-  ): BoatConfig[T] = BoatConfig[T](use: use)
+  ): Manifest = Manifest(use: use)
 
-proc newConfD*[T: BoatConfigKind = Config](
-  self: T = newConfig(),
+proc newManifestD*(
   use: string = defaultManifest
-  ): BoatConfig[T] = BoatConfig[T](use: use.splitPath.head)
+  ): Manifest = Manifest(use: use.splitPath.head)
 
 
-export boatConfig, boatConstants, fileManagerUtils
+export manifest, boatConstants, fileManagerUtils
 
 when isMainModule:
-  let confFromFile = newConf()
+  let confFromFile = newManifest()
   discard confFromFile.load()
   # debugEcho repr BoatConfig[JsonNode](use: "xyz")
-  debugEcho repr newConf()
-  debugEcho repr newConfD()
+  debugEcho repr newManifest()
+  debugEcho repr newManifestD()
